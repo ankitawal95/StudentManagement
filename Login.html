@@ -1,0 +1,43 @@
+<html>
+
+
+<head>
+
+<title>Student Management System</title>
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+ <link rel="stylesheet" type="text/css" href="css/login.css">
+<script src="js/login.js"></script>
+
+</head>
+
+<body  background="login.jpg" class="myc" onload="rememberlast()">
+
+
+
+	<center><h1 class="mystyle" style="color:white";> Student Management System </h1></center>
+<br><br>
+
+<form  id="myform" onsubmit="return validateForm()"  method="POST">
+
+
+<label class="mystyle" style="color:white";>User ID</label>
+<br>
+<input style="width:100%;" required type="text" name="userid" id="uid" />
+<br><br>
+<label class="mystyle" style="color:white";>Password:</label>
+<br>
+<input style="width:100%;" required type="password" name="password" id="pass" />
+<br><br>
+<input   type="checkbox" name="rem" id="rem"/><span class="mystyle"  style="color:white";>&nbsp;Remember me</span>
+<br><br>
+<center><input class="mystyle" type="submit" name="btn" ></center>
+
+
+</form>
+
+
+</body>
+
+
+
+</html>

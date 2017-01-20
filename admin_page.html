@@ -1,0 +1,137 @@
+<html>
+
+
+
+<head>
+
+	<title>Student Management System</title>
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/admin_page.css">
+	<script src="js/admin_page.js"></script>
+</head>
+ 
+
+
+
+<body onload="rememberlast()"  background="adminpage.png" >
+
+<br>
+<a href="Login.html" onclick='return checkStatus()'><h2><span class="mystyle"  style="color:white;position: absolute;
+    right: 150px;">&nbsp;Logout</span></h2></a>
+
+
+<br>
+	<center><h1> <label id="uid1" class="mystyle"  style="color:white";>Loading...</label></h1></label>
+
+
+		<br>
+
+		<br>
+<center>
+
+	<label  class="mystyle"  style="color:white";>Department Name</label>
+		<input type="text" name="dept" id="dept"  />
+		<button onclick="add()">Add Department </button>
+	</center>
+
+	<br>
+	<br>
+
+	<center>
+		<label  class="mystyle"  style="color:white";>Subject Name</label>
+		<input type="text" name="dept" id="subject">
+		<select id="selectNumber">
+    <option selected="true" disabled="disabled" hidden>Choose a department</option>
+  </select>
+
+		<Button onclick="subjectadd()" >Add Subject </Button>
+	</center>
+
+
+
+
+	<br>
+	<br>
+
+	<center>
+
+<label  class="mystyle"  style="color:white";>Teacher name</label>
+		<input type="text" name="dept" id="teacher">
+
+
+		<label  class="mystyle"  style="color:white";>User name</label>
+		<input type="text" name="dept" id="teacher_uname">
+
+		<label  class="mystyle"  style="color:white";>Password</label>
+		<input type="text" name="dept" id="teacher_pass">
+
+		 <select id="dept_d_teach">
+    <option selected="true"  value="me" disabled="disabled" hidden>Choose a Department</option>
+  </select>
+
+  	<label  class="mystyle"  style="color:white";>Designation</label>
+		<input type="text" name="dept" id="teacher_design">
+	
+		<Button onclick="addteacher()" >Add Teacher </Button>
+	</center>
+
+<br>
+<br>
+
+	
+<center>
+		<select id="teacher_drop"   onchange="teacherChange()">
+    <option selected="true" value="me" disabled="disabled" hidden>Choose a teacher</option>
+  </select>
+
+  <select id="dept_drop"   onchange="myFunction()">
+    <option selected="true"  value="me" disabled="disabled" hidden>Choose a Department</option>
+  </select>
+
+
+<select id="subj_drop" >
+    <option selected="true" value="me" disabled="disabled" hidden>Choose a subject</option>
+  </select>
+
+
+		<Button onclick="allocate()" >Allocate Teacher </Button>
+	</center>
+
+<br><br><br>
+
+<select id="t_drop"   onchange="teaChange()">
+    <option selected="true" value="me" disabled="disabled" hidden>Choose a teacher</option>
+  </select>
+
+  <select id="d_drop"   >
+    <option selected="true"  value="me" disabled="disabled" hidden>Choose a Department</option>
+  </select>
+
+
+
+  	<label  class="mystyle"  style="color:white";>Password</label>
+		<input type="text" name="dept" id="hod_pass">
+	
+
+<Button onclick="allocate1()" >Assign HOD </Button>
+
+<br><br><br>
+
+
+
+  <select id="dept_d">
+    <option selected="true"  value="me" disabled="disabled" hidden>Choose a Department</option>
+  </select>
+		<Button onclick="showDept()" >Show By department </Button>
+<br><br>
+<span class="mystyle" id="showDept" style="color:white";></span>
+
+<br><br><br>
+  <select id="subj_d">
+    <option selected="true"  value="me" disabled="disabled" hidden>Choose a subject</option>
+  </select>
+		<Button onclick="showBySubject()" >Show By subjects </Button>
+<br><br>
+<span class="mystyle" id="showsub" style="color:white";></span>
+	</body>
+</html>

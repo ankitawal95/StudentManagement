@@ -1,0 +1,54 @@
+<html>
+<head>
+
+		<link rel="stylesheet" type="text/css" href="css/admin_page.css">
+
+<script type="text/javascript">
+
+
+       function checkStatus()
+     {
+
+
+
+        localStorage.setItem("status", "out");
+
+
+
+      
+     }
+
+
+     function remember(){
+
+ document.getElementById("name").innerHTML = "Welcome &nbsp;"+localStorage.getItem("id1")+"&nbsp;HOD" 
+
+     }
+
+</script>
+
+</head>
+<body  onload="remember()" background="adminpage.png" >
+
+<center><h1 class="mystyle" id="name" style="color:white;">Welcome</h1></center>
+
+
+
+<a href="Login.html" onclick='return checkStatus()'><h2><span class="mystyle"  style="color:white;position: absolute;
+    right: 150px;">&nbsp;Logout</span></h2></a>
+
+
+<br><br><br><br>
+
+<label  class="mystyle"  style="color:white";>Name Students</label>
+		<input type="text" name="dept" id="dept"  />
+
+
+<label  class="mystyle"  style="color:white";>Password</label>
+		<input type="text" name="dept" id="dept"  />
+
+		<button>Add Student</button>
+
+<a hre
+</body>
+</html>
