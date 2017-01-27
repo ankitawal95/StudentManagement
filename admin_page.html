@@ -3,135 +3,184 @@
 
 
 <head>
-
+<script src="js/admin_page.js"></script>
 	<title>Student Management System</title>
+
 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/admin_page.css">
-	<script src="js/admin_page.js"></script>
+
 </head>
  
 
 
 
-<body onload="rememberlast()"  background="adminpage.png" >
+<body onload="rememberlast()"  background="admin.jpg" >
 
 <br>
-<a href="Login.html" onclick='return checkStatus()'><h2><span class="mystyle"  style="color:white;position: absolute;
-    right: 150px;">&nbsp;Logout</span></h2></a>
+<a href="Login.html" onclick='return checkStatus()'><h2><span class="mystyle"  style="color:white; margin-right:9px;float:right;">&nbsp;Logout</span></h2></a>
 
 
 <br>
 	<center><h1> <label id="uid1" class="mystyle"  style="color:white";>Loading...</label></h1></label>
+<div>
+		<hr />
+		<button style="float:left;height:40px;width:14%;border-radius:30px;"  onclick="return addDeptVisible()">Add department</button>
+
+			<button style="float:left;height:40px;margin-left:6px; width:14%;border-radius:30px;" onclick="return addSubjectVisible()">Add Subject</button>
+
+				<button style="float:left;height:40px;margin-left:6px; width:14%;border-radius:30px;" onclick="return addTeacherVisible()">Add Teacher</button>
+
+					<button style="float:left;height:40px;margin-left:6px; width:14%;border-radius:30px;" onclick="return allocateTeacher()">Allocate Teacher</button>
+
+						<button style="float:left;height:40px;margin-left:6px; width:14%;border-radius:30px;" onclick="return assignHOD()">Assign HOD</button>
 
 
-		<br>
+						<button style="float:left;height:40px;margin-left:6px; width:14%;border-radius:30px;" onclick="return showbyDept()">Show By Department</button>
 
-		<br>
-<center>
+						<button style="float:left;height:40px;margin-left:6px; width:10%;border-radius:30px;" onclick="return showbySub()">Show By Subject</button>
+<br><br>
+<hr>
+</div>
 
-	<label  class="mystyle"  style="color:white";>Department Name</label>
-		<input type="text" name="dept" id="dept"  />
-		<button onclick="add()">Add Department </button>
-	</center>
+		
+<br><br><br>
 
-	<br>
-	<br>
-
+<form id="addDept"  action="#" style="display:block">
 	<center>
-		<label  class="mystyle"  style="color:white";>Subject Name</label>
-		<input type="text" name="dept" id="subject">
-		<select id="selectNumber">
+		<br>
+	
+		<input style="border-radius:30px;height:30px; text-align:center" type="text" placeholder="Department Name" name="dept" id="dept"  />
+		<br><br><br>
+		<input type="submit" value="Add Department " style="border-radius:30px; height:30px;" onclick="add()"/>
+	</center>
+</form>
+	
+
+
+<form id="addSubject" action="javascript:addSubjectVisible()" style="display:none">
+	<center>
+		<br>
+		<input type="text" style="border-radius:30px; height:30px; text-align:center";height:30px; placeholder="Subject Name" name="dept" id="subject">
+		<br><br><br>
+		<select id="selectNumber" style="border-radius:30px; height:30px;text-align:center">
     <option selected="true" disabled="disabled" hidden>Choose a department</option>
   </select>
-
-		<Button onclick="subjectadd()" >Add Subject </Button>
+<br><br><br>
+		<input type="submit" onclick="subjectadd()" style="border-radius:30px;height:30px; text-align:center;" value="Add Subject"/>
 	</center>
 
+</form>
 
 
 
-	<br>
-	<br>
 
+	
+
+
+<form id="addTeacher" action="javascript:addTeacherVisible()" style="display:none">
 	<center>
 
-<label  class="mystyle"  style="color:white";>Teacher name</label>
-		<input type="text" name="dept" id="teacher">
+
+		<input type="text" style="border-radius:30px; text-align:center;height:30px;" placeholder="Teacher's name" name="dept" id="teacher">
 
 
-		<label  class="mystyle"  style="color:white";>User name</label>
-		<input type="text" name="dept" id="teacher_uname">
-
-		<label  class="mystyle"  style="color:white";>Password</label>
-		<input type="text" name="dept" id="teacher_pass">
-
-		 <select id="dept_d_teach">
+	<br><br><br>
+		<input type="text" style="border-radius:30px; text-align:center;height:30px;" placeholder="User's Name" name="dept" id="teacher_uname">
+<br><br><br>
+	
+		<input type="password" style="border-radius:30px; text-align:center;height:30px;" placeholder="Password" name="dept" id="teacher_pass">
+<br><br><br>
+		 <select id="dept_d_teach" style="border-radius:30px;height:30px; text-align:center">
     <option selected="true"  value="me" disabled="disabled" hidden>Choose a Department</option>
   </select>
-
-  	<label  class="mystyle"  style="color:white";>Designation</label>
-		<input type="text" name="dept" id="teacher_design">
-	
-		<Button onclick="addteacher()" >Add Teacher </Button>
+<br><br><br>
+  
+		<input type="text" style="border-radius:30px;height:30px; text-align:center"  placeholder="Designation" name="dept" id="teacher_design">
+	<br><br><br>
+		<input type="submit" onclick="addteacher()" style="border-radius:30px;height:30px; text-align:center" value="Add Teacher" />
 	</center>
+</form>
 
-<br>
-<br>
 
-	
+
+	<form id="allocateTeacher" action="javascript:allocateTeacher()" style="display:none">
 <center>
-		<select id="teacher_drop"   onchange="teacherChange()">
+
+	<br>
+  <select id="teacher_drop" style="border-radius:30px; text-align:center;height:30px;"  onchange="teacherChange()">
+
     <option selected="true" value="me" disabled="disabled" hidden>Choose a teacher</option>
-  </select>
 
-  <select id="dept_drop"   onchange="myFunction()">
+  </select>
+  <br><br><br>
+
+  <select id="dept_drop" style="border-radius:30px; text-align:center;height:30px;"  onchange="myFunction()">
+
     <option selected="true"  value="me" disabled="disabled" hidden>Choose a Department</option>
+
   </select>
-
-
-<select id="subj_drop" >
-    <option selected="true" value="me" disabled="disabled" hidden>Choose a subject</option>
-  </select>
-
-
-		<Button onclick="allocate()" >Allocate Teacher </Button>
-	</center>
-
 <br><br><br>
 
-<select id="t_drop"   onchange="teaChange()">
-    <option selected="true" value="me" disabled="disabled" hidden>Choose a teacher</option>
+  <select id="subj_drop" style="border-radius:30px; text-align:center;height:30px;" >
+
+    <option selected="true" value="me" disabled="disabled" style="border-radius:30px;height:30px; text-align:center" hidden>Choose a subject</option>
+
   </select>
 
-  <select id="d_drop"   >
+<br><br><br>
+  <input type="submit" onclick="allocate()" style="border-radius:30px;height:30px; text-align:center" value="Allocate Teacher" />
+</center>
+</form>
+
+
+
+
+
+<form id="assignHOD" action="javascript:assignHOD()" style="display:none">
+
+	<br>
+<select id="t_drop"  style="border-radius:30px;height:30px; text-align:center" onchange="teaChange()">
+    <option selected="true" value="me" disabled="disabled" hidden>Choose a teacher</option>
+  </select>
+<br><br><br>
+  <select id="d_drop"  style="border-radius:30px;height:30px; text-align:center" >
     <option selected="true"  value="me" disabled="disabled" hidden>Choose a Department</option>
   </select>
 
 
-
-  	<label  class="mystyle"  style="color:white";>Password</label>
-		<input type="text" name="dept" id="hod_pass">
+<br><br><br>
+  	
+		<input type="password" style="border-radius:30px;height:30px; text-align:center" placeholder="password" name="dept" id="hod_pass">
 	
-
-<Button onclick="allocate1()" >Assign HOD </Button>
-
 <br><br><br>
+<input type="submit" onclick="allocate1()" style="border-radius:30px;height:30px; text-align:center" value="Assign HOD"/> 
+</form>
 
 
+<form id="showByDept" action="javascript:showbyDept()" style="display:none">
 
-  <select id="dept_d">
+	<br>
+  <select id="dept_d" style="border-radius:30px;height:30px; text-align:center">
     <option selected="true"  value="me" disabled="disabled" hidden>Choose a Department</option>
   </select>
-		<Button onclick="showDept()" >Show By department </Button>
-<br><br>
-<span class="mystyle" id="showDept" style="color:white";></span>
-
+  <br><br><br>
+		<input type="submit" onclick="showDept()" style="border-radius:30px;height:30px; text-align:center" value="Show By Department" />
 <br><br><br>
-  <select id="subj_d">
+<span class="mystyle" id="showDept" style="color:white";></span>
+</form>
+
+
+<div id="showBySubject" action="javascript:showbySub()" style="display:none">
+
+	<br>
+  <select style="border-radius:30px;height:30px; text-align:center" id="subj_d">
     <option selected="true"  value="me" disabled="disabled" hidden>Choose a subject</option>
   </select>
-		<Button onclick="showBySubject()" >Show By subjects </Button>
+
+  <br><br><br>
+		<Button onclick="showBySubject()" style="border-radius:30px;height:30px; text-align:center">Show By Subjects </Button>
 <br><br>
 <span class="mystyle" id="showsub" style="color:white";></span>
+</div>
 	</body>
 </html>

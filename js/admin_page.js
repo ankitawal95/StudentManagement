@@ -1,80 +1,182 @@
-    var departments=[];
-    var combination={};
+var departments=[];
+var combination={};
+var OUT='out'
 
-    function rememberlast()
-    {
 
-      if(localStorage.getItem("status")=="out")
+function checkStatus()
 {
-
-
-window.location.href = "Login.html";
-  return false;
+  localStorage.setItem("status", "out");
 }
 
-  if(localStorage.getItem("status")=="in")
-{
 
-if(localStorage.getItem("idname")=="admin")
-  {}else{
+function addDeptVisible(){
 
-window.location.href = "teacher_page.html";
-  return false;
 
-  }
+document.getElementById("addDept").style.display= "block";
+document.getElementById("addSubject").style.display= "none";
+document.getElementById("addTeacher").style.display= "none";
+document.getElementById("allocateTeacher").style.display= "none";
+document.getElementById("assignHOD").style.display= "none";
+document.getElementById("showByDept").style.display= "none";
+document.getElementById("showBySubject").style.display= "none";
 
 }
 
- if(localStorage.getItem("status")=="inHOD")
-{
+function addSubjectVisible(){
 
-
-window.location.href = "hod.html";
-  return false;
-
-
-
-}
- 
-
-       document.getElementById("subj_drop").disabled= true;
-        document.getElementById("dept_drop").disabled= true;
-
-
-     document.getElementById("uid1").innerHTML="Welcome &nbsp;"+ localStorage.getItem("id1");
-
-     if(localStorage.getItem("idname")==null)
-{
-
-
-window.location.href = "Login.html";
-  return false;
+document.getElementById("addDept").style.display= "none";
+document.getElementById("addSubject").style.display= "block";
+document.getElementById("addTeacher").style.display= "none";
+document.getElementById("allocateTeacher").style.display= "none";
+document.getElementById("assignHOD").style.display= "none";
+document.getElementById("showByDept").style.display= "none";
+document.getElementById("showBySubject").style.display= "none";
   
 }
 
-      departments = JSON.parse(localStorage.getItem("departments"));
+function addTeacherVisible(){
+document.getElementById("addDept").style.display= "none";
+document.getElementById("addSubject").style.display= "none";
+document.getElementById("addTeacher").style.display= "block";
+document.getElementById("allocateTeacher").style.display= "none";
+document.getElementById("assignHOD").style.display= "none";
+document.getElementById("showByDept").style.display= "none";
+document.getElementById("showBySubject").style.display= "none";
 
-       teachers = JSON.parse(localStorage.getItem("teacher"));
-    if(departments == null)
+
+  
+}
+
+function assignHOD(){
+
+document.getElementById("addDept").style.display= "none";
+document.getElementById("addSubject").style.display= "none";
+document.getElementById("addTeacher").style.display= "none";
+document.getElementById("allocateTeacher").style.display= "none";
+document.getElementById("assignHOD").style.display= "block";
+document.getElementById("showByDept").style.display= "none";
+document.getElementById("showBySubject").style.display= "none";
+  
+}
+
+function showbyDept(){
+document.getElementById("addDept").style.display= "none";
+document.getElementById("addSubject").style.display= "none";
+document.getElementById("addTeacher").style.display= "none";
+document.getElementById("allocateTeacher").style.display= "none";
+document.getElementById("assignHOD").style.display= "none";
+document.getElementById("showByDept").style.display= "block";
+document.getElementById("showBySubject").style.display= "none";
+
+  
+}
+
+function showbySub(){
+document.getElementById("addDept").style.display= "none";
+document.getElementById("addSubject").style.display= "none";
+document.getElementById("addTeacher").style.display= "none";
+document.getElementById("allocateTeacher").style.display= "none";
+document.getElementById("assignHOD").style.display= "none";
+document.getElementById("showByDept").style.display= "none";
+document.getElementById("showBySubject").style.display= "block";
+
+  
+}
+function allocateTeacher(){
+document.getElementById("addDept").style.display= "none";
+document.getElementById("addSubject").style.display= "none";
+document.getElementById("addTeacher").style.display= "none";
+document.getElementById("allocateTeacher").style.display= "block";
+document.getElementById("assignHOD").style.display= "none";
+document.getElementById("showByDept").style.display= "none";
+document.getElementById("showBySubject").style.display= "none";
+
+  
+}
+
+function session(){
+if(localStorage.getItem("status")=="out") {
+        window.location.href = "Login.html";
+        return ;
+        }
+
+if(localStorage.getItem("status")=="in")
     {
-    departments=[];
+    if(localStorage.getItem("idname")=="admin")
+    {
 
+     }
+    else
+    {
+       window.location.href = "teacher_page.html";
+       return false;
+     }
+
+   }
+
+ if(localStorage.getItem("status")=="inHOD")
+   {
+     window.location.href = "hod.html";
+     return false;
+   }
+
+ if(localStorage.getItem("status")=="inSTUD")
+   {
+       window.location.href = "student.html";
+       return false;
+   }
+
+  if(localStorage.getItem("idname")==null)
+    {
+         window.location.href = "Login.html";
+         return false;
+  
     }
 
+ 
 
-    var select = document.getElementById("selectNumber"); 
+}
 
 
-    for(var i = 0; i < departments.length; i++) {
+function Invisible(){
+
+document.getElementById("addDept").style.display= "block";
+document.getElementById("addSubject").style.display= "none";
+document.getElementById("addTeacher").style.display= "none";
+document.getElementById("allocateTeacher").style.display= "none";
+document.getElementById("assignHOD").style.display= "none";
+document.getElementById("showByDept").style.display= "none";
+document.getElementById("showBySubject").style.display= "none";
+
+
+}
+
+
+function restoreData(){
+
+  
+departments = JSON.parse(localStorage.getItem("departments"));
+teachers = JSON.parse(localStorage.getItem("teacher"));
+if(departments == null)
+  {
+  departments=[];
+  }
+
+
+var select = document.getElementById("selectNumber"); 
+
+
+  for(var i = 0; i < departments.length; i++) {
         var opt = departments[i];
         var el = document.createElement("option");
         el.textContent = opt;
         el.value = opt;
         select.appendChild(el);
     }
- var dept_drop = document.getElementById("dept_drop"); 
+ 
 
-  var dept_d = document.getElementById("dept_d"); 
+ var dept_drop = document.getElementById("dept_drop"); 
+ var dept_d = document.getElementById("dept_d"); 
 
 
     for(var i = 0; i < departments.length; i++) {
@@ -97,8 +199,8 @@ window.location.href = "Login.html";
     }
 
 
- var sub_d = document.getElementById("subj_d"); 
- var dept_teach = document.getElementById("dept_d_teach"); 
+   var sub_d = document.getElementById("subj_d"); 
+   var dept_teach = document.getElementById("dept_d_teach"); 
   for(var i = 0; i < sub.length; i++) {
         var opt = sub[i];
         var el = document.createElement("option");
@@ -107,7 +209,6 @@ window.location.href = "Login.html";
         sub_d.appendChild(el);
       
     }
-
 
 
      for(var i = 0; i < departments.length; i++) {
@@ -120,26 +221,23 @@ window.location.href = "Login.html";
       
     }
   All_teachers = JSON.parse(localStorage.getItem("All_teachers"));
+
+
   if(All_teachers == null)
     {
     All_teachers=[];
 
     }
  var teacher_drop = document.getElementById("teacher_drop"); 
-
-
-    for(var i = 0; i < All_teachers.length; i++) {
+   for(var i = 0; i < All_teachers.length; i++) {
         var opt = All_teachers[i];
         var el = document.createElement("option");
         el.textContent = opt;
         el.value = opt;
         teacher_drop.appendChild(el);
     }
-
 
 var teacher_drop = document.getElementById("t_drop"); 
-
-
     for(var i = 0; i < All_teachers.length; i++) {
         var opt = All_teachers[i];
         var el = document.createElement("option");
@@ -148,90 +246,118 @@ var teacher_drop = document.getElementById("t_drop");
         teacher_drop.appendChild(el);
     }
 
-    }
-
-    function add(){
 
 
+}
 
-    if(! (document.getElementById("dept").value.length < 3))
-    {
+function rememberlast() {
+session();
+Invisible();
+document.getElementById("subj_drop").disabled= true;
+document.getElementById("dept_drop").disabled= true;
+document.getElementById("uid1").innerHTML="Welcome &nbsp;"+ localStorage.getItem("id1");
+restoreData();
 
-    	 departments = JSON.parse(localStorage.getItem("departments"));
+
+}
+
+function add(){
+  if(! (document.getElementById("dept").value.trim().length < 3))
+       {
+  	    departments = JSON.parse(localStorage.getItem("departments"));
 
         dept_drop = JSON.parse(localStorage.getItem("dept_drop"));
-    if(departments == null)
-    {
-    departments=[];
-    	
-    }
+        if(departments == null)
+        {
+        departments=[];
+        	
+        }
 
-     if(dept_drop == null)
-    {
-    dept_drop=[];
-      
-    }
-    departments.push(document.getElementById("dept").value);
+         if(dept_drop == null)
+        {
+        dept_drop=[];
+          
+        }
 
-    localStorage.setItem("departments", JSON.stringify(departments));
+      for(var i=0;i<departments.length;i++)
+       {
 
-    confirm("Successfully Added");
+         if(departments[i].toLowerCase().trim() == document.getElementById("dept").value.toLowerCase().trim())
+        {
+          confirm("Department already exists!");
 
-
-
-
-
-
-  var dept_d = document.getElementById("dept_d_teach"); 
-
-        var opt = document.getElementById("dept").value;
-        var el = document.createElement("option");
-        el.textContent = opt;
-        el.value = opt;
-       dept_d.appendChild(el);
+          flag=1;
+          return false;
+        }
 
 
-    var select = document.getElementById("selectNumber"); 
+       }
+  departments.push(document.getElementById("dept").value);
 
-        var opt = document.getElementById("dept").value;
-        var el = document.createElement("option");
-        el.textContent = opt;
-        el.value = opt;
-        select.appendChild(el);
+  localStorage.setItem("departments", JSON.stringify(departments));
+
+  confirm("Successfully Added");
 
 
 
-       var dept_drop = document.getElementById("dept_d"); 
-
-        var opt = document.getElementById("dept").value;
-        var el = document.createElement("option");
-        el.textContent = opt;
-        el.value = opt;
-        dept_drop.appendChild(el);
 
 
 
-    }
-    else{
+var dept_d = document.getElementById("dept_d_teach"); 
+
+      var opt = document.getElementById("dept").value;
+      var el = document.createElement("option");
+      el.textContent = opt;
+      el.value = opt;
+     dept_d.appendChild(el);
 
 
-    	confirm("Please enter valid department");
-    }
+  var select = document.getElementById("selectNumber"); 
+
+      var opt = document.getElementById("dept").value;
+      var el = document.createElement("option");
+      el.textContent = opt;
+      el.value = opt;
+      select.appendChild(el);
 
 
 
-    }
+     var dept_drop = document.getElementById("dept_d"); 
+
+      var opt = document.getElementById("dept").value;
+      var el = document.createElement("option");
+      el.textContent = opt;
+      el.value = opt;
+      dept_drop.appendChild(el);
 
 
-    function subjectadd()
-    {
+
+  }
+  else{
+
+
+  	confirm("Please enter valid department");
+  }
+
+var elements = document.getElementsByTagName("input");
+for (var ii=0; ii < elements.length; ii++) {
+  if (elements[ii].type == "text") {
+    elements[ii].value = "";
+  }
+}
+
+}
+
+
+function subjectadd()
+{
 
 
 
-  if(! (document.getElementById("subject").value.length < 3))
-  {
+  if(! (document.getElementById("subject").value.trim().length < 3))
+      {
 
-                            var sitePersonel = [];
+    var sitePersonel = [];
     var allotment = []
 
     console.log(sitePersonel);
@@ -255,11 +381,32 @@ var all_subject=[];
 
      }
 
+
+
     var subject= document.getElementById("subject").value;
     var e = document.getElementById("selectNumber"); 
     var value = e.options[e.selectedIndex].value;
     var text = e.options[e.selectedIndex].text;
     var teacher = text;
+
+
+
+  for(var i=0;i<sitePersonel.length;i++)
+        {
+
+         if(sitePersonel[i].subject.toLowerCase().trim() == subject.toLowerCase().trim() &&  sitePersonel[i].deptartment.toLowerCase().trim() == teacher.toLowerCase().trim())
+        {
+
+          confirm("Subject already exists in the Department!");
+
+          flag=1;return false ;
+        }
+
+
+        }
+
+
+
     var combination = {
       "subject": subject,
       "deptartment": teacher
@@ -271,13 +418,24 @@ var all_subject=[];
 
     //localStorage.setItem("allotment", JSON.stringify(allotment));
 
- localStorage.setItem("all_subject", JSON.stringify(all_subject));
+    localStorage.setItem("all_subject", JSON.stringify(all_subject));
 
     localStorage.setItem("Allocate", JSON.stringify(sitePersonel));
 
     console.log(JSON.stringify(sitePersonel));
 
     confirm("Successfully Added");
+
+
+     var elements = document.getElementsByTagName("input");
+for (var ii=0; ii < elements.length; ii++) {
+  if (elements[ii].type == "text") {
+    elements[ii].value = "";
+  }
+}
+
+
+addSubjectVisible();
 
     var sub_d = document.getElementById("subj_d"); 
  
@@ -301,15 +459,45 @@ var all_subject=[];
 
 
     confirm("Enter proper subject name");
+    addSubjectVisible();
 
-   }}
+        }
 
-  function addteacher()
+           addSubjectVisible();
+
+
+           return false;
+
+  }
+
+function addteacher()
+{
+
+
+  if(! (document.getElementById("teacher").value.trim().length < 3) &&  ! (document.getElementById("teacher_uname").value.trim().length < 3) && 
+
+    ! (document.getElementById("teacher_pass").value.trim().length < 3) &&     ! (document.getElementById("teacher_design").value.trim().length < 3))
   {
 
-  
-  if(! (document.getElementById("teacher").value.length < 3) &&  ! (document.getElementById("teacher_uname").value.length < 3) && ! (document.getElementById("teacher_pass").value.length < 3))
-  {
+
+
+     var e = document.getElementById("dept_d_teach"); 
+    var value3 = e.options[e.selectedIndex].value;
+    
+
+    if( value3 == "me")
+    {
+
+
+        confirm("Please select the department");
+        addTeacherVisible();
+        return false ;
+
+    } 
+
+
+
+
 
         y= document.getElementById("teacher_pass").value;
         x=document.getElementById("teacher_uname").value;
@@ -324,7 +512,7 @@ var all_subject=[];
       if(y == x) {
         alert("Error: Password must be different from Username!");
         
-        return false;
+        return false ;
       }
       re = /[0-9]/;
       if(!re.test(y)) {
@@ -342,7 +530,7 @@ var all_subject=[];
       if(!re.test(y)) {
         alert("Error: password must contain at least one uppercase letter (A-Z)!");
         
-        return false;
+        return false ;
       }
 
 
@@ -363,7 +551,7 @@ var all_subject=[];
 
 
 
-                            var sitePersonel = [];
+    var sitePersonel = [];
     var allotment = []
 
     console.log(sitePersonel);
@@ -387,13 +575,27 @@ var all_subject=[];
      }
 
 
-      var e = document.getElementById("dept_d_teach"); 
+    var e = document.getElementById("dept_d_teach"); 
     var value3 = e.options[e.selectedIndex].value;
     var text3 = e.options[e.selectedIndex].text;
 
     var myteacher= document.getElementById("teacher").value;
-    
-    
+      for(var i=0;i<sitePersonel.length;i++)
+           {
+
+         if(sitePersonel[i].teacher_uname.toLowerCase().trim() == x.toLowerCase().trim() && sitePersonel[i].teacher_department.toLowerCase().trim() == text3.toLowerCase().trim())
+        {
+
+          confirm("Username already exists!");
+          addTeacherVisible();
+
+          flag=1;return false;
+        }
+
+
+        }
+
+    x= "t_"+x;
     var combination = {
       "teacher": myteacher,
       "teacher_uname": x,
@@ -403,7 +605,7 @@ var all_subject=[];
     }
     sitePersonel.push(combination);
     console.log(sitePersonel);
-All_teachers.push("Teacher Name:"+myteacher+" Username:"+x);
+    All_teachers.push("Teacher Name:"+myteacher+" Username:"+x);
 
     //localStorage.setItem("allotment", JSON.stringify(allotment));
 
@@ -428,8 +630,28 @@ All_teachers.push("Teacher Name:"+myteacher+" Username:"+x);
         el.value = opt;
         td.appendChild(el);
 
-    confirm("Successfully Added");
 
+
+        var td1 = document.getElementById("t_drop"); 
+
+
+
+        var opt = "Teacher Name:"+myteacher+" Username:"+x;
+        var el = document.createElement("option");
+        el.textContent = opt;
+        el.value = opt;
+        td1.appendChild(el);
+
+
+         var elements = document.getElementsByTagName("input");
+for (var ii=0; ii < elements.length; ii++) {
+  if (elements[ii].type == "text" || elements[ii].type == "password") {
+    elements[ii].value = "";
+  }
+}
+
+    confirm("Successfully Added");
+addTeacherVisible();
 
 
 
@@ -438,67 +660,67 @@ All_teachers.push("Teacher Name:"+myteacher+" Username:"+x);
 
 
     confirm("Please enter all fields. Atleast 3 characters for username and name and 6 characters for password");
+    addTeacherVisible();
+    return false;
   }
- 	
-    }
 
 
 
-function myFunction()
-     {
 
-
-      var subj_select = document.getElementById("subj_drop");
-
-        document.getElementById("subj_drop").disabled= false;
-
-
-    
-
-
-   sitePersonel = JSON.parse(localStorage.getItem("Allocate"));
-
-     if(sitePersonel==null)
-     {
-
-    sitePersonel = [];
-
-     }
-
-     console.log(sitePersonel);
-
-
- var e = document.getElementById("dept_drop"); 
-    var value = e.options[e.selectedIndex].value;
-    var text = e.options[e.selectedIndex].text;
-
-var length = subj_select.options.length;
-for (z = length; z >=1; z--) {
-subj_select.remove(z) ;
+return false;
 }
 
 
 
-    for(var i = 0; i < sitePersonel.length; i++) {
+function myFunction()
+{
+
+
+     var subj_select = document.getElementById("subj_drop");
+
+      document.getElementById("subj_drop").disabled= false;
+
+
+  
+
+
+     sitePersonel = JSON.parse(localStorage.getItem("Allocate"));
+
+     if(sitePersonel==null)
+      {
+
+      sitePersonel = [];
+
+      }
+
+     console.log(sitePersonel);
+
+
+     var e = document.getElementById("dept_drop"); 
+     var value = e.options[e.selectedIndex].value;
+     var text = e.options[e.selectedIndex].text;
+
+      var length = subj_select.options.length;
+      for (z = length; z >=1; z--) {
+      subj_select.remove(z) ;
+      }
 
 
 
-        var opt = sitePersonel[i].deptartment;
-
-        if(opt == text){
-        var el = document.createElement("option");
-        el.textContent = sitePersonel[i].subject;
-        el.value = sitePersonel[i].subject;
-        subj_select.appendChild(el);
-   }
-
-    }
+  for(var i = 0; i < sitePersonel.length; i++) {
 
 
 
+      var opt = sitePersonel[i].deptartment;
 
+      if(opt == text){
+      var el = document.createElement("option");
+      el.textContent = sitePersonel[i].subject;
+      el.value = sitePersonel[i].subject;
+      subj_select.appendChild(el);
+ }
 
-
+  }
 
 
 
@@ -506,22 +728,28 @@ subj_select.remove(z) ;
 
 
 
- 
 
 
 
 
 
-     }
 
-     function allocate(){
+
+
+
+
+
+
+}
+
+function allocate(){
 
 
 
 
 
         
-                            var sitePersonel = [];
+    var sitePersonel = [];
     var allotment = []
 
     console.log(sitePersonel);
@@ -546,7 +774,7 @@ subj_select.remove(z) ;
     var text = e.options[e.selectedIndex].text;
     var subj_drop = text;
 
-var e = document.getElementById("dept_drop"); 
+    var e = document.getElementById("dept_drop"); 
     var value3 = e.options[e.selectedIndex].value;
     var text = e.options[e.selectedIndex].text;
     var dept_drop = text;
@@ -555,10 +783,26 @@ var e = document.getElementById("dept_drop");
     {
 
 
-confirm("Please select all fields");
-return false;
+        confirm("Please select all fields");
+        return false;
 
     } 
+
+
+      for(var i=0;i<sitePersonel.length;i++)
+           {
+
+         if(sitePersonel[i].Teacher.toLowerCase().trim() == teacherdrop.toLowerCase().trim() && sitePersonel[i].Separtment.toLowerCase().trim() == dept_drop.toLowerCase().trim()
+        &&  sitePersonel[i].subject.toLowerCase().trim() == subj_drop.toLowerCase().trim())
+        {
+
+          confirm("Teacher from this department already allocated to the subject!");
+allocateTeacher();
+          flag=1;return false;
+        }
+
+
+        }
 
 
     var combination = {
@@ -580,16 +824,27 @@ return false;
 
     confirm("Successfully Added");
 
-     }
+    allocateTeacher();
+
+     var elements = document.getElementsByTagName("input");
+for (var ii=0; ii < elements.length; ii++) {
+  if (elements[ii].type == "text") {
+    elements[ii].value = "";
+  }
+}
+
+allocateTeacher();
+return false;
+}
 
 
-     function showDept()
-     {
+function showDept()
+{
 
 
 
 
-             var sitePersonel = [];
+    var sitePersonel = [];
     var allotment = []
 
     console.log(sitePersonel);
@@ -602,8 +857,8 @@ return false;
     sitePersonel = [];
 
      }
-console.log(sitePersonel);
-var e = document.getElementById("dept_d"); 
+   console.log(sitePersonel);
+    var e = document.getElementById("dept_d"); 
     var value = e.options[e.selectedIndex].value;
     var text = e.options[e.selectedIndex].text;
 
@@ -636,326 +891,303 @@ var e = document.getElementById("dept_d");
 
 
 
-
-     }
-
-
-     function showBySubject(){
+return false;
+}
 
 
+function showBySubject(){
 
-             var sitePersonel = [];
-    var allotment = []
 
-    console.log(sitePersonel);
 
-      sitePersonel = JSON.parse(localStorage.getItem("MyAllocation"));
+          var sitePersonel = [];
+          var allotment = []
 
-     if(sitePersonel==null)
-     {
+          console.log(sitePersonel);
 
-    sitePersonel = [];
+            sitePersonel = JSON.parse(localStorage.getItem("MyAllocation"));
 
-     }
-console.log(sitePersonel);
-var e = document.getElementById("subj_d"); 
-    var value = e.options[e.selectedIndex].value;
-    var text = e.options[e.selectedIndex].text;
+           if(sitePersonel==null)
+           {
+
+          sitePersonel = [];
+
+           }
+          console.log(sitePersonel);
+          var e = document.getElementById("subj_d"); 
+          var value = e.options[e.selectedIndex].value;
+          var text = e.options[e.selectedIndex].text;
 
 
 
           var wx = document.getElementById("showsub");
-           wx.innerHTML="";
-           var prev="";
-    for(var i = 0; i < sitePersonel.length; i++) {
+          wx.innerHTML="";
+          var prev="";
+          for(var i = 0; i < sitePersonel.length; i++) {
 
 
 
-        var opt = sitePersonel[i].subject;
+              var opt = sitePersonel[i].subject;
 
-        if(opt == text ){
+              if(opt == text ){
 
-          
+                
 
-          var wx = document.getElementById("showsub");
-        wx.innerHTML = wx.innerHTML + sitePersonel[i].Teacher +"&nbsp; &nbsp; &nbsp; &nbsp;  "+ sitePersonel[i].Department+ "<br>";
-       
-   }
+                var wx = document.getElementById("showsub");
+              wx.innerHTML = wx.innerHTML + sitePersonel[i].Teacher +"&nbsp; &nbsp; &nbsp; &nbsp;  "+ sitePersonel[i].Department+ "<br>";
+             
+         }
 
-    }
-
-
-
-
-
-
-     }
-
-     function teacherChange(){
-document.getElementById("dept_drop").disabled= false;
-
-              var sitePersonel = [];
-    var allotment = []
-
-    console.log(sitePersonel);
-
-      sitePersonel = JSON.parse(localStorage.getItem("teacher"));
-
-     if(sitePersonel==null)
-     {
-
-    sitePersonel = [];
-
-     }
-console.log(sitePersonel);
-var e = document.getElementById("teacher_drop"); 
-    var value = e.options[e.selectedIndex].value;
-    var text = e.options[e.selectedIndex].text;
-
-
-var tt = document.getElementById("dept_drop"); 
-
-
-
-var length = tt.options.length;
-for (z = length; z >=1; z--) {
-tt.remove(z) ;
-}
-for(var i = 0; i < sitePersonel.length; i++) {
-
-
-
-        var opt =   "Teacher Name:"+sitePersonel[i].teacher  +" Username:"+sitePersonel[i].teacher_uname  ;
-
-        if(opt == text){
-
-        
-        var el = document.createElement("option");
-        el.textContent = sitePersonel[i].teacher_department;
-        el.value = sitePersonel[i].teacher_department;
-        tt.appendChild(el);
-   }
+          }
 
 
 
 
+return false;
 
 }
 
-   
+function teacherChange(){
+      document.getElementById("dept_drop").disabled= false;
 
-       myFunction();
+          var sitePersonel = [];
+          var allotment = []
 
+          console.log(sitePersonel);
 
-     }
+            sitePersonel = JSON.parse(localStorage.getItem("teacher"));
 
+           if(sitePersonel==null)
+           {
 
- function teaChange(){
-document.getElementById("d_drop").disabled= false;
+          sitePersonel = [];
 
-              var sitePersonel = [];
-    var allotment = []
-
-    console.log(sitePersonel);
-
-      sitePersonel = JSON.parse(localStorage.getItem("teacher"));
-
-     if(sitePersonel==null)
-     {
-
-    sitePersonel = [];
-
-     }
-console.log(sitePersonel);
-var e = document.getElementById("t_drop"); 
-    var value = e.options[e.selectedIndex].value;
-    var text = e.options[e.selectedIndex].text;
+           }
+      console.log(sitePersonel);
+      var e = document.getElementById("teacher_drop"); 
+          var value = e.options[e.selectedIndex].value;
+          var text = e.options[e.selectedIndex].text;
 
 
-var tt = document.getElementById("d_drop"); 
+      var tt = document.getElementById("dept_drop"); 
 
 
 
-var length = tt.options.length;
-for (z = length; z >=1; z--) {
-tt.remove(z) ;
+      var length = tt.options.length;
+      for (z = length; z >=1; z--) {
+      tt.remove(z) ;
+      }
+      for(var i = 0; i < sitePersonel.length; i++) {
+
+
+
+              var opt =   "Teacher Name:"+sitePersonel[i].teacher  +" Username:"+sitePersonel[i].teacher_uname  ;
+
+              if(opt == text){
+
+              
+              var el = document.createElement("option");
+              el.textContent = sitePersonel[i].teacher_department;
+              el.value = sitePersonel[i].teacher_department;
+              tt.appendChild(el);
+         }
+
+
+
+
+
+      }
+
+         
+
+             myFunction();
+
+
+return false;}
+
+
+function teaChange(){
+      document.getElementById("d_drop").disabled= false;
+
+          var sitePersonel = [];
+          var allotment = []
+
+          console.log(sitePersonel);
+
+            sitePersonel = JSON.parse(localStorage.getItem("teacher"));
+
+           if(sitePersonel==null)
+           {
+
+          sitePersonel = [];
+
+           }
+      console.log(sitePersonel);
+      var e = document.getElementById("t_drop"); 
+          var value = e.options[e.selectedIndex].value;
+          var text = e.options[e.selectedIndex].text;
+
+
+      var tt = document.getElementById("d_drop"); 
+
+
+
+      var length = tt.options.length;
+      for (z = length; z >=1; z--) {
+      tt.remove(z) ;
+      }
+      for(var i = 0; i < sitePersonel.length; i++) {
+
+
+
+              var opt =   "Teacher Name:"+sitePersonel[i].teacher  +" Username:"+sitePersonel[i].teacher_uname  ;
+
+              if(opt == text){
+
+              
+              var el = document.createElement("option");
+              el.textContent = sitePersonel[i].teacher_department;
+              el.value = sitePersonel[i].teacher_department;
+              tt.appendChild(el);
+         }
+
+
+
+return false;
+
+      }
+
+
+
+
+
+
 }
-for(var i = 0; i < sitePersonel.length; i++) {
-
-
-
-        var opt =   "Teacher Name:"+sitePersonel[i].teacher  +" Username:"+sitePersonel[i].teacher_uname  ;
-
-        if(opt == text){
-
-        
-        var el = document.createElement("option");
-        el.textContent = sitePersonel[i].teacher_department;
-        el.value = sitePersonel[i].teacher_department;
-        tt.appendChild(el);
-   }
-
-
-
-
-
-}
-
-   
-
-  
-
-
-     }
 function allocate1(){
+        var sitePersonel = [];
+        var allotment = []
+        y= document.getElementById("hod_pass").value;
+        if(y != "" ) {
+          if(y.length < 6) {
+            alert("Error: Password must contain at least six characters!");
+            
+            return false;
+          }
+         
+          re = /[0-9]/;
+          if(!re.test(y)) {
+            alert("Error: password must contain at least one number (0-9)!");
+           
+            return false;
+          }
+          re = /[a-z]/;
+          if(!re.test(y)) {
+            alert("Error: password must contain at least one lowercase letter (a-z)!");
+           
+            return false;
+          }
+          re = /[A-Z]/;
+          if(!re.test(y)) {
+            alert("Error: password must contain at least one uppercase letter (A-Z)!");
+            
+            return false;
+          }
 
-  
 
 
-
-        
-                            var sitePersonel = [];
-    var allotment = []
-
-
-
-    y= document.getElementById("hod_pass").value;
-        
-
-             if(y != "" ) {
-      if(y.length < 6) {
-        alert("Error: Password must contain at least six characters!");
-        
-        return false;
-      }
-     
-      re = /[0-9]/;
-      if(!re.test(y)) {
-        alert("Error: password must contain at least one number (0-9)!");
+              
+        } else {
+          alert("Error: Please check that you've entered and confirmed your password!");
        
-        return false;
-      }
-      re = /[a-z]/;
-      if(!re.test(y)) {
-        alert("Error: password must contain at least one lowercase letter (a-z)!");
-       
-        return false;
-      }
-      re = /[A-Z]/;
-      if(!re.test(y)) {
-        alert("Error: password must contain at least one uppercase letter (A-Z)!");
-        
-        return false;
-      }
+          return false;
+        }
+        console.log(sitePersonel);
+
+          sitePersonel = JSON.parse(localStorage.getItem("HODAllocation"));
+
+         if(sitePersonel==null)
+         {
+
+        sitePersonel = [];
+         }
+
+        var e = document.getElementById("t_drop"); 
+        var value1 = e.options[e.selectedIndex].value;
+        var text = e.options[e.selectedIndex].text;
+        var teacherdrop = text;
 
 
+        var e = document.getElementById("d_drop"); 
+        var value3 = e.options[e.selectedIndex].value;
+        var text = e.options[e.selectedIndex].text;
+        var dept_drop = text;
 
-          
-    } else {
-      alert("Error: Please check that you've entered and confirmed your password!");
-   
-      return false;
-    }
-
-
+        if(value1 == "me" || value3 == "me")
+        {
 
 
+    confirm("Please select all fields");
+    return false;
+
+        } 
 
 
+        var flag=0;
 
-
-
-
-
-
-
-    console.log(sitePersonel);
-
-      sitePersonel = JSON.parse(localStorage.getItem("HODAllocation"));
-
-     if(sitePersonel==null)
-     {
-
-    sitePersonel = [];
-
-
-  
-
-
-
-
-     }
-
-    var e = document.getElementById("t_drop"); 
-    var value1 = e.options[e.selectedIndex].value;
-    var text = e.options[e.selectedIndex].text;
-    var teacherdrop = text;
-
-
-var e = document.getElementById("d_drop"); 
-    var value3 = e.options[e.selectedIndex].value;
-    var text = e.options[e.selectedIndex].text;
-    var dept_drop = text;
-
-    if(value1 == "me" || value3 == "me")
+    for(var i=0;i<sitePersonel.length;i++)
     {
 
 
-confirm("Please select all fields");
+         if(sitePersonel[i].Department ==  dept_drop)
+         {
+
+
+            flag=1;
+
+            confirm("The previous HOD was "+ sitePersonel[i].Teacher);
+            sitePersonel[i].Teacher = teacherdrop;
+
+             localStorage.setItem("HODAllocation", JSON.stringify(sitePersonel));
+
+                confirm("Successfully Added");
+
+
+                 var elements = document.getElementsByTagName("input");
+for (var ii=0; ii < elements.length; ii++) {
+  if (elements[ii].type == "text" || elements[ii].type == "password") {
+    elements[ii].value = "";
+  }
+}
+
+         }
+
+
+
+    }
+    if(flag==0){
+        var combination = {
+          "Teacher": teacherdrop,
+          "Department": dept_drop,
+          "pass": y
+           
+        }
+        sitePersonel.push(combination);
+        
+        console.log(sitePersonel);
+
+
+        //localStorage.setItem("allotment", JSON.stringify(allotment));
+
+
+        localStorage.setItem("HODAllocation", JSON.stringify(sitePersonel));
+
+        console.log(JSON.stringify(sitePersonel));
+
+        confirm("Successfully Added");
+
 return false;
 
-    } 
 
-
-    var flag=0;
-
-for(var i=0;i<sitePersonel.length;i++)
-{
-
-
-     if(sitePersonel[i].Department ==  dept_drop)
-     {
-
-
-        flag=1;
-
-        confirm("The previous HOD was "+ sitePersonel[i].Teacher);
-        sitePersonel[i].Teacher = teacherdrop;
-
-         localStorage.setItem("HODAllocation", JSON.stringify(sitePersonel));
-
-            confirm("Successfully Added");
-
-     }
-
-
-
-}
-if(flag==0){
-    var combination = {
-      "Teacher": teacherdrop,
-      "Department": dept_drop,
-      "pass": y
-       
     }
-    sitePersonel.push(combination);
-    
-    console.log(sitePersonel);
-
-
-    //localStorage.setItem("allotment", JSON.stringify(allotment));
-
-
-    localStorage.setItem("HODAllocation", JSON.stringify(sitePersonel));
-
-    console.log(JSON.stringify(sitePersonel));
-
-    confirm("Successfully Added");
-
-
-
-
-}
 
 
 
@@ -968,15 +1200,3 @@ if(flag==0){
 
 }
 
-
-       function checkStatus()
-     {
-
-
-
-        localStorage.setItem("status", "out");
-
-
-
-      
-     }
