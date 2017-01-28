@@ -1,217 +1,160 @@
+const MY_VALUES =
+{
 
-function rememberlast(){
+"STUDENT":"student.html",
+"ADMIN":"admin_page.html",
+"HOD":"hod.html",
+"TEACHER":"teacher_page.html",
+"SESSION":"status",
+"STORED_PASSWORD":"pass1",
+"LOGGEDIN":"in",
+"LOGGEDOUT":"out",
+"LOGGEDINHOD":"inHOD",
+"LOGGEDINSTUDENT":"inSTUD"
+}
 
-   SessionState();
-       
-    document.getElementById('rem').checked = true;
+//function to display pop ups
+function pop(a, b){
 
-    if (typeof(Storage) !== "undefined") {
-        // Store
-        
-        // Retrieve
-        document.getElementById("uid").value= localStorage.getItem("id1");
-         document.getElementById("pass").value = localStorage.getItem("pass1");
+  var popup = document.getElementById('myPopup');
+    popup.classList.toggle('show');
 
-      
-    } else {
-      confirm( "Sorry, your browser does not support Web Storage...");
+document.getElementById(a).disabled=true;
+popup.innerHTML=b;
+var millisecondsToWait = 3000;
+setTimeout(function() {
+    popup.classList.toggle('show');
+document.getElementById(a).disabled=false;
+}, millisecondsToWait);
+
+}
+
+// Remember the stored username and password
+function rememberlast()
+{
+
+ SessionState();      
+ document.getElementById('rem').checked = true;
+
+ if (typeof(Storage) !== "undefined") 
+ {
+   document.getElementById("uid").value= localStorage.getItem("id1");
+   document.getElementById("pass").value = localStorage.getItem(MY_VALUES.STORED_PASSWORD);   
+ } else 
+
+ {
+   pop("login","Local Storage not compatible");
+ }
+}
+
+// Maintains session states for Teacher , Login , Admin , HOD.
+function SessionState()
+{
+ if(localStorage.getItem(MY_VALUES.SESSION)==MY_VALUES.LOGGEDIN) 
+ {
+    if(localStorage.getItem("idname")=="admin") {
+      window.location.href = MY_VALUES.ADMIN;
+      return false;
     }
-
+    else {
+      window.location.href = MY_VALUES.TEACHER;
+      return false;
+    }
   }
-
-
-function SessionState(){
-
- if(localStorage.getItem("status")=="in")
-    {
-    if(localStorage.getItem("idname")=="admin")
-    {
-    window.location.href = "admin_page.html";
-    return false;
-    }else{
-      window.location.href = "teacher_page.html";
+  else if (localStorage.getItem(MY_VALUES.SESSION)==MY_VALUES.LOGGEDINHOD) {
+     window.location.href =MY_VALUES.HOD;
       return false;
-    }
-    }else if (localStorage.getItem("status")=="inHOD")
-    {
-     window.location.href = "hod.html";
+  }
+  else if (localStorage.getItem(MY_VALUES.SESSION)==MY_VALUES.LOGGEDINSTUDENT) {
+     window.location.href = MY_VALUES.STUDENT;
       return false;
-    }
-    else if (localStorage.getItem("status")=="inSTUD")
-    {
-     window.location.href = "student.html";
-      return false;
-    }
+  }
 }
   
-
-
-  function StudentLogin(){
-
-
-
- 
-   var a=document.forms["myform"]["userid"].value;
-   var obj = JSON.parse('{ "user":"admin", "password":"cronj123@"}');
-   console.log("Hello:"+obj.password);
-
-
-   var a=document.forms["myform"]["userid"].value;
-   var obj = JSON.parse('{ "user":"admin", "password":"cronj123@"}');
-
-   console.log("Hello:"+obj.password);
-   var sitePersonel = [];
-   var allotment = []
-   console.log(sitePersonel);
-   sitePersonel = JSON.parse(localStorage.getItem("Students"));
-   if(sitePersonel==null)
-    {
-    sitePersonel = [];
-    }
-   var y = document.forms["myform"]["password"].value;
-
-   for(var i = 0; i < sitePersonel.length; i++) {
-    var opt = sitePersonel[i].student_uname;
-    var op2=sitePersonel[i].student_name;
-    var opt1 =  sitePersonel[i].student_pass;
-            
-    if(a===opt && y===opt1)
-    {
-        if(document.getElementById("rem").checked == true)
-            {
-          localStorage.setItem("id2",sitePersonel[i].student_department);
-          localStorage.setItem("pass1", y);
-          localStorage.setItem("status", "inSTUD");
-          localStorage.setItem("id1",opt);
-          localStorage.setItem("idname",op2);
-          }
-        else{
-
-        localStorage.setItem("pass1", "");
-        localStorage.setItem("id2",sitePersonel[i].student_department);
-        localStorage.setItem("id1",opt);
-        localStorage.setItem("idname",op2);
-        localStorage.setItem("status", "inSTUD");
-        }
-    window.location.href = "student.html";
-       return true ;
-        }
-
-       else{
-      localStorage.setItem("status", "out");
-       }
-
-      }
-
-      return false;
-  }
-
-
-
-function HODLogin(){
- var a=document.forms["myform"]["userid"].value;
-
-
-var sitePersonel = [];
-var allotment = []
-
-console.log(sitePersonel);
-
-sitePersonel = JSON.parse(localStorage.getItem("HODAllocation"));
-
-if(sitePersonel==null)
+// Searches for Login match within Local Storage
+function Login_parseStorage(a1,a2,a3,b1,b2,b3,b4)
 {
-sitePersonel = [];
-}
+ var sitePersonel = [];
+ var allotment = []
+ console.log(sitePersonel);
+ var a=document.forms["myform"]["userid"].value;
+sitePersonel = JSON.parse(localStorage.getItem(a1));
+
+ if(sitePersonel==null)
+ {
+   sitePersonel = [];
+ }
  var y = document.forms["myform"]["password"].value;
 
-for(var i = 0; i < sitePersonel.length; i++) {
-    var opt = sitePersonel[i].Department;
-    var opt1 =  sitePersonel[i].pass;
-    if(a==opt && y==opt1)
-    {
+ for(var i = 0; i < sitePersonel.length; i++) {
+    var opt = sitePersonel[i][a2];
+    var opt1 =  sitePersonel[i][a3];
+     if(a==opt && y==opt1)
+      {
        
         if(document.getElementById("rem").checked == true)
            {
-          localStorage.setItem("id2",opt);
-          localStorage.setItem("pass1", y);
-          localStorage.setItem("status", "inHOD");
-          localStorage.setItem("id1",opt);
-          localStorage.setItem("idname",sitePersonel[i].Teacher);
-        }
-        else{
-        localStorage.setItem("pass1", "");
-        localStorage.setItem("id1",opt);
-        localStorage.setItem("idname",sitePersonel[i].Teacher);
-        localStorage.setItem("status", "inHOD");
-        localStorage.setItem("id2","Teacher Name:"+op2+" Username:"+opt);
-        }
-        window.location.href = "hod.html";
-           return true;
-    }
+             var w = sitePersonel[i][b1];
+
+             if(b1==="myteacher")
+              w = "Teacher Name:"+sitePersonel[i][b4]+" Username:"+sitePersonel[i][b3];
+           
+
+              localStorage.setItem("id2",w);
+              localStorage.setItem(MY_VALUES.STORED_PASSWORD, y);
+              localStorage.setItem(MY_VALUES.SESSION, b2);
+              localStorage.setItem("id1",sitePersonel[i][b3]);
+              localStorage.setItem("idname",sitePersonel[i][b4]);
+            }
+           else
+            {
+              localStorage.setItem(MY_VALUES.STORED_PASSWORD, "");
+              localStorage.setItem("id1",sitePersonel[i][b3]);
+              localStorage.setItem("idname",sitePersonel[i][b4]);
+              localStorage.setItem(MY_VALUES.SESSION, b2);
+              localStorage.setItem("id2",w);
+            }
+          window.location.href = c1;
+          return true;
+      }
 
     else{
-      localStorage.setItem("status", "out");
+      localStorage.setItem(MY_VALUES.SESSION, MY_VALUES.LOGGEDOUT);
     }
 }
 
 return false;
+
 }
 
-function teacherLogin(){
- 
-  var sitePersonel = [];
-  var allotment = []
-  console.log(sitePersonel);
-  var a=document.forms["myform"]["userid"].value;
-  sitePersonel = JSON.parse(localStorage.getItem("teacher"));
-
-  if(sitePersonel==null)
+//STUDENT LOGIN
+  function StudentLogin()
   {
-   sitePersonel = [];
+   if(Login_parseStorage("Students","student_uname","student_pass","student_department","inSTUD","student_uname","student_name"))
+     return true;
+   else
+     return false;
   }
-  var y = document.forms["myform"]["password"].value;
 
-  for(var i = 0; i < sitePersonel.length; i++) {
-       var opt = sitePersonel[i].teacher_uname;
-       var opt1 =  sitePersonel[i].teacher_pass;
-       var op2 = sitePersonel[i].teacher;
 
-      if(a==opt && y==opt1)
-      {
+// HOD LOGIN
+function HODLogin(){
+  if(Login_parseStorage("HODAllocation","Department","pass","Department","inHOD","Department","Teacher"))
+     return true;
+  else
+     return false;
+}
 
-          if(document.getElementById("rem").checked == true)
-           {
-
-           var w = "Teacher Name:"+op2+" Username:"+opt;
-           localStorage.setItem("id2",w);
-           localStorage.setItem("pass1", y);
-           localStorage.setItem("status", "in");
-           localStorage.setItem("id1",opt);
-           localStorage.setItem("idname",op2);
-          }
-          else{
-          localStorage.setItem("pass1", "");
-          localStorage.setItem("id1",opt);
-          localStorage.setItem("idname",op2);
-          localStorage.setItem("status", "in");
-          localStorage.setItem("id2","Teacher Name:"+op2+" Username:"+opt);
-          } 
-          window.location.href = "teacher_page.html";
-             return true;
-      }
-
-      else{
-           localStorage.setItem("status", "out");
-           }
-           
-        }
-
-        return false;
-
+//HOD LOGIN
+function teacherLogin(){
+  if(Login_parseStorage("teacher","teacher_uname","teacher_pass","myteacher","in","teacher_uname","teacher"))
+     return true;
+  else
+     return false;
 }
 
 
+//ADMIN LOGIN
 function adminLogin(){
 
 var a=document.forms["myform"]["userid"].value;
@@ -219,89 +162,59 @@ var obj = JSON.parse('{ "user":"admin", "password":"cronj123@"}');
 var y = document.forms["myform"]["password"].value;
 
 
-if(a ==  obj.user &&   y== obj.password)
+if(a == obj.user && y== obj.password)
 {
   if(document.getElementById("rem").checked == true)
       {
-      localStorage.setItem("pass1", y);
+      localStorage.setItem(MY_VALUES.STORED_PASSWORD, y);
       localStorage.setItem("idname","admin");
-      localStorage.setItem("status", "in");
+      localStorage.setItem(MY_VALUES.SESSION, MY_VALUES.LOGGEDIN);
       localStorage.setItem("id1", document.forms["myform"]["userid"].value);
-      window.location.href = "admin_page.html";
+      window.location.href = MY_VALUES.ADMIN;
       return true;
       }
   else{
 
-      localStorage.setItem("pass1", "");
+      localStorage.setItem(MY_VALUES.STORED_PASSWORD, "");
       localStorage.setItem("idname","admin");
-      localStorage.setItem("status", "in");
-      window.location.href = "admin_page.html";
+      localStorage.setItem(MY_VALUES.SESSION, MY_VALUES.LOGGEDIN);
+      window.location.href = MY_VALUES.ADMIN;
       return true;
       }
 
   }
   else{
-      localStorage.setItem("status", "out");
-      confirm("The details are incorrent. Kindly review and try again");
+      localStorage.setItem(MY_VALUES.SESSION, MY_VALUES.LOGGEDOUT);
+         pop("login","Details are incorrect. Try Again.");
       return false;
       }  
-alert("failed");
+pop("login","Failed");
 return false;
 }
 
 function validate()
  {
-
-
-
-
     if(StudentLogin())
-    {
-      window.location.href = "student.html";
+     {
+      window.location.href = MY_VALUES.STUDENT;
       return false;
-    } 
-    else{
-
-          console.log("Hello");
-        }
-
+     }
     if(HODLogin())
      {
-      window.location.href = "hod.html";
-      return false;
+       window.location.href = MY_VALUES.HOD;
+       return false;
      }
-     else
-     {
-     console.log("Hello1");
-     }
-
     if(teacherLogin())
     {
-       window.location.href = "teacher_page.html";
-      return false;
-
-    }else{
-
-      
+       window.location.href = MY_VALUES.TEACHER;
+       return false;
     }
-
     if(adminLogin())
     {
-     window.location.href = "admin_page.html";
+     window.location.href = MY_VALUES.ADMIN;
      return false;
-
-
-    }else{
-
-
+    }else
+    {
       return false;
     }
-
-
-
-
-
-
-
-
 }

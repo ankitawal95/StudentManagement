@@ -1,49 +1,42 @@
 <html>
+ <head>
 
-
-<head>
-
-  <title>
+   <title>
      Student Management System
-  </title>
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="css/login.css">
-  <script src="js/login.js"></script>
+   </title>
+   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+   <link rel="stylesheet" type="text/css" href="css/login.css">
+   <link rel="stylesheet" type="text/css" href="css/admin_page.css">
+   <script src="js/login.js"></script>
 
-</head>
+ </head>
 
-<body  background="admin.jpg" class="myc" onload="rememberlast()">
-
-
-
-  	<center>
-      <h1 class="mystyle" style="color:white";> Student Management System </h1>
+ <body  background="img/admin.jpg" class="myc" onload="rememberlast()">
+    <center>
+     <h1 class="mystyle" style="color:white";> Student Management System </h1>
     </center>
-    <br><br>
+    <br> <br>
+    <div class="popup" style="float:left; margin-left:45%;" >
+      <span class="popuptext" style="margin-left:40%;" id="myPopup">A Simple Popup!</span>
+    </div>
+   
 
+
+    <!-- Login Form -->
     <form  id="myform" onsubmit=" return validate()"  method="POST">
-
-
-    <label class="mystyle" style="color:white;border-radius:30px;text-align:center">
-      User ID
-    </label>
-    <br>
-    <input style="width:100%;border-radius:30px;text-align:center;color:black;" required type="text" name="userid" id="uid" />
-    <br><br>
-    <label class="mystyle" style="color:white;">Password:</label>
-    <br>
-    <input style="width:100%;border-radius:30px;text-align:center;color:black;"  style="color:white;border-radius:30px;" required type="password" name="password" id="pass" />
-    <br><br>
-    <input   type="checkbox" name="rem" id="rem"/><span class="mystyle"  style="color:white";>&nbsp;Remember me</span>
-    <br><br>
-    <center><input class="mystyle" style="font-weight:bold;font-size:1.4em;border-radius:30px;background:white;width:38%;height:37px;" type="submit" name="btn" value="Login"/></center>
-
-
-</form>
-
-
-</body>
-
-
-
+      <label class="mystyle" style="color:white;border-radius:30px;text-align:center">
+        User ID
+      </label>
+      <br>
+      <input style="width:100%;border-radius:30px;text-align:center;color:black;" required type="text" name="userid" id="uid" />
+      <br><br>
+      <label class="mystyle" style="color:white;">Password:</label>
+      <br>
+      <input style="width:100%;border-radius:30px;text-align:center;color:black;"  style="color:white;border-radius:30px;" required type="password" name="password" id="pass" />
+      <br><br>
+      <input   type="checkbox" name="rem" id="rem"/><span class="mystyle"  style="color:white";>&nbsp;Remember me</span>
+      <br><br>
+      <center><input class="mystyle" id="login" style="font-weight:bold;font-size:1.4em;border-radius:30px;background:white;width:38%;height:37px;" type="submit" name="btn" value="Login"/></center>
+    </form>
+  </body>
 </html>

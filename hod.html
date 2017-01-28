@@ -1,231 +1,33 @@
 <html>
 <head>
-
-		<link rel="stylesheet" type="text/css" href="css/admin_page.css">
-
-<script type="text/javascript">
-
-
-       function checkStatus()
-     {
-
-
-
-        localStorage.setItem("status", "out");
-
-
-
-      
-     }
-
-
-     function remember(){
-
-
-     	     if(localStorage.getItem("status")=="out")
-{
-
-
-window.location.href = "Login.html";
-  return false;
-}
-
-  if(localStorage.getItem("status")=="in")
-{
-
-if(localStorage.getItem("idname")=="admin")
-  {
-
-
-window.location.href = "admin_page.html";
-  return false;
-
-
-  }else{
-
-window.location.href = "teacher_page.html";
-  return false;
-
-  }
-
-}
-
-
-
-if (localStorage.getItem("status")=="inSTUD")
-{
- window.location.href = "student.html";
-  return false;
-
-
-
-}
-
- document.getElementById("name").innerHTML = "Welcome &nbsp;"+localStorage.getItem("id1")+"&nbsp;HOD <br><br><center><font size='3' >"+localStorage.getItem("idname")+"</font></center>" ;
-
-
- if(localStorage.getItem("id1")==null)
- {
-
-
-window.location.href = "Login.html";
-  return false;
-
- }
-
-     }
-
-
-
-     function addStudents(){
-
-      
-                            var sitePersonel = [];
-    var allotment = []
-
-    console.log(sitePersonel);
-
-      sitePersonel = JSON.parse(localStorage.getItem("Students"));
-
-     if(sitePersonel==null)
-     {
-
-    sitePersonel = [];
-
-     }
-
-
-      y= document.getElementById("pass").value;
-        x=document.getElementById("uname").value;
-           za=document.getElementById("username").value;
-if(!(y.toLowerCase().trim().length< 3) || !(x.toLowerCase().trim().length< 3) || !(y.toLowerCase().trim().length< 3))
-
-{
-flag=0;
-
-           for(var i=0;i<sitePersonel.length;i++)
-           {
-
-				 if(sitePersonel[i].student_uname.toLowerCase().trim() == "s_"+x.toLowerCase().trim())
-				  {
-
-					confirm("Username already exists!");
-
-               flag=1;return false;
-				}
-
-
-           }
-
-             if(y != "" ) {
-      if(y.length < 6) {
-        alert("Error: Password must contain at least six characters!");
-        
-        return false;
-      }
-      if(y == x) {
-        alert("Error: Password must be different from Username!");
-        
-        return false;
-      }
-      re = /[0-9]/;
-      if(!re.test(y)) {
-        alert("Error: password must contain at least one number (0-9)!");
-       
-        return false;
-      }
-      re = /[a-z]/;
-      if(!re.test(y)) {
-        alert("Error: password must contain at least one lowercase letter (a-z)!");
-       
-        return false;
-      }
-      re = /[A-Z]/;
-      if(!re.test(y)) {
-        alert("Error: password must contain at least one uppercase letter (A-Z)!");
-        
-        return false;
-      }
-
-
-
-          
-    } else {
-      alert("Error: Please check that you've entered and confirmed your password!");
-   
-      return false;
-    }
-
-
-x="s_"+x;
- var combination = {
-
-
-      "student_uname": x,
-      "student_pass": y,
-      "student_name": document.getElementById("username").value,
-      "student_department": localStorage.getItem("id1")
-      
-    }
-    sitePersonel.push(combination);
-    console.log(sitePersonel);
-
-    //localStorage.setItem("allotment", JSON.stringify(allotment));
-
-
-    localStorage.setItem("Students", JSON.stringify(sitePersonel));
-
-
-
-confirm("Successfully Added");
-
-
-var elements = document.getElementsByTagName("input");
-for (var ii=0; ii < elements.length; ii++) {
-  if (elements[ii].type == "text") {
-    elements[ii].value = "";
-  }
-}
-
-}else{
-
-confirm("Please enter all fields correctly");
-
-
-
-
-
-}
-     }
-
-</script>
-
+      <script src="js/hod.js"></script>
+  		<link rel="stylesheet" type="text/css" href="css/admin_page.css">
 </head>
-<body  onload="remember()" background="admin.jpg" >
+<body  onload="remember()" background="img/admin.jpg" >
 
 
   <a href="Login.html" onclick='return checkStatus()'><h2><span class="mystyle"  style="color:white; margin-right:9px;float:right;">&nbsp;Logout</span></h2></a>
-<br>
-<center><h1 class="mystyle" id="name" style="color:white;">Welcome</h1></center>
+  <br>
+  <center><h1 class="mystyle" id="name" style="color:white;">Welcome</h1></center>
 
+  <br><br><br><br>
+  <div class="popup" style="float:left; margin-left:36%;" onclick="myFunction()">
+    <span class="popuptext" style="margin-left:10px;" id="myPopup">A Simple Popup!</span>
+  </div>
+  <br><br>
+  <center>
+     <!-- Form to add students by HOD-->
+  <form>
 
-
-
-
-
-<br><br><br><br><br><br>
-<center>
-<form>
-
-		<input type="text"  style="border-radius:30px;height:30px; text-align:center;color:white"; placeholder="Name Student" name="username" id="username"  />
+		<input type="text"  style="border-radius:30px;height:30px; text-align:center;color:black"; placeholder="Name Student" name="username" id="username"  />
 
 		<br><br><br>
-		<input type="text" name="uname"   style="border-radius:30px;height:30px; text-align:center;color:white" placeholder="Username" id="uname"  />
-<br><br><br>
+		<input type="text" name="uname"   style="border-radius:30px;height:30px; text-align:center;color:black" placeholder="Username" id="uname"  />
+    <br><br><br>
 
-		<input type="text"   style="border-radius:30px;height:30px; text-align:center;color:white" placeholder="Password" name="pass" id="pass"  />
-<br><br><br>
-		<input type="button"  style="border-radius:30px;height:30px; text-align:center;font-weight:bold;font-size:1.01em;color:black" value="Add Student" onclick="return addStudents()"/>
+		<input type="text"   style="border-radius:30px;height:30px; text-align:center;color:black" placeholder="Password" name="pass" id="pass"  />
+    <br><br><br>
+		<input type="button"  id="hod_id" style="border-radius:30px;height:30px; text-align:center;font-weight:bold;font-size:1.01em;color:black" value="Add Student" onclick="return addStudents()"/>
 </form>
 </center>
 </body>

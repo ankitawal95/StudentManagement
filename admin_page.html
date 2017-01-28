@@ -1,110 +1,97 @@
 <html>
-
-
-
 <head>
-<script src="js/admin_page.js"></script>
-	<title>Student Management System</title>
-
-	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="css/admin_page.css">
-
+   <script src="js/admin_page.js"></script>
+   <title>Student Management System</title>
+   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+   <link rel="stylesheet" type="text/css" href="css/admin_page.css">
 </head>
  
+<body onload="rememberlast()"  background="img/admin.jpg" >
+   <br>
+
+    <!-- Logout -->
+   <a href="Login.html" onclick='return checkStatus()'><h2><span class="mystyle"  style="color:white; margin-right:9px;float:right;">&nbsp;Logout</span></h2></a>
+   <br>
+
+   <!-- Welcome -->
+   <center><h1> <label id="uid1" class="mystyle"  style="color:white";>Loading...</label></h1></label>
+
+   <!-- Tabs to Navigate around different Admin Options -->
+   <div>
+      <hr />
+      <button style="float:left;height:40px;width:14%;border-radius:30px;"  onclick="return addDeptVisible()">Add department</button>
+      <button style="float:left;height:40px;margin-left:6px; width:14%;border-radius:30px;" onclick="return addSubjectVisible()">Add Subject</button>
+      <button style="float:left;height:40px;margin-left:6px; width:14%;border-radius:30px;" onclick="return addTeacherVisible()">Add Teacher</button>
+      <button style="float:left;height:40px;margin-left:6px; width:14%;border-radius:30px;" onclick="return allocateTeacher()">Allocate Teacher</button>
+      <button style="float:left;height:40px;margin-left:6px; width:14%;border-radius:30px;" onclick="return assignHOD()">Assign HOD</button>
+      <button style="float:left;height:40px;margin-left:6px; width:14%;border-radius:30px;" onclick="return showbyDept()">Show By Department</button>
+	    <button style="float:left;height:40px;margin-left:6px; width:10%;border-radius:30px;" onclick="return showbySub()">Show By Subject</button>
+      <br><br>
+      <hr>
+   </div>
+   <br><br><br>
 
 
-
-<body onload="rememberlast()"  background="admin.jpg" >
-
-<br>
-<a href="Login.html" onclick='return checkStatus()'><h2><span class="mystyle"  style="color:white; margin-right:9px;float:right;">&nbsp;Logout</span></h2></a>
-
-
-<br>
-	<center><h1> <label id="uid1" class="mystyle"  style="color:white";>Loading...</label></h1></label>
-<div>
-		<hr />
-		<button style="float:left;height:40px;width:14%;border-radius:30px;"  onclick="return addDeptVisible()">Add department</button>
-
-			<button style="float:left;height:40px;margin-left:6px; width:14%;border-radius:30px;" onclick="return addSubjectVisible()">Add Subject</button>
-
-				<button style="float:left;height:40px;margin-left:6px; width:14%;border-radius:30px;" onclick="return addTeacherVisible()">Add Teacher</button>
-
-					<button style="float:left;height:40px;margin-left:6px; width:14%;border-radius:30px;" onclick="return allocateTeacher()">Allocate Teacher</button>
-
-						<button style="float:left;height:40px;margin-left:6px; width:14%;border-radius:30px;" onclick="return assignHOD()">Assign HOD</button>
+    <!-- Popup Message Area -->
+   <div class="popup" style="float:left; margin-left:43%;" onclick="myFunction()">
+      <span class="popuptext" style="margin-left:10px;" id="myPopup">A Simple Popup!</span>
+   </div>
+   <br>
 
 
-						<button style="float:left;height:40px;margin-left:6px; width:14%;border-radius:30px;" onclick="return showbyDept()">Show By Department</button>
-
-						<button style="float:left;height:40px;margin-left:6px; width:10%;border-radius:30px;" onclick="return showbySub()">Show By Subject</button>
-<br><br>
-<hr>
-</div>
-
-		
-<br><br><br>
-
-<form id="addDept"  action="#" style="display:block">
+<!--Form To Add Department -->
+ <form id="addDept"  action="#" style="display:block">
 	<center>
 		<br>
 	
 		<input style="border-radius:30px;height:30px; text-align:center" type="text" placeholder="Department Name" name="dept" id="dept"  />
 		<br><br><br>
-		<input type="submit" value="Add Department " style="border-radius:30px; height:30px;" onclick="add()"/>
+		<input type="submit" value="Add Department " id="aDept" style="border-radius:30px; height:30px;" onclick="add()"/>
 	</center>
 </form>
 	
 
 
+<!--Form To Add subject in  Department -->
 <form id="addSubject" action="javascript:addSubjectVisible()" style="display:none">
 	<center>
 		<br>
 		<input type="text" style="border-radius:30px; height:30px; text-align:center";height:30px; placeholder="Subject Name" name="dept" id="subject">
 		<br><br><br>
 		<select id="selectNumber" style="border-radius:30px; height:30px;text-align:center">
-    <option selected="true" disabled="disabled" hidden>Choose a department</option>
-  </select>
-<br><br><br>
-		<input type="submit" onclick="subjectadd()" style="border-radius:30px;height:30px; text-align:center;" value="Add Subject"/>
+       <option selected="true" disabled="disabled" hidden>Choose a department</option>
+    </select>
+    <br><br><br>
+		<input type="submit" onclick="subjectadd()"  id="aSubject" style="border-radius:30px;height:30px; text-align:center;" value="Add Subject"/>
 	</center>
 
 </form>
 
 
-
-
-	
-
-
+<!--Form To Add Teachers -->
 <form id="addTeacher" action="javascript:addTeacherVisible()" style="display:none">
 	<center>
-
-
 		<input type="text" style="border-radius:30px; text-align:center;height:30px;" placeholder="Teacher's name" name="dept" id="teacher">
-
-
-	<br><br><br>
+	    <br><br><br>
 		<input type="text" style="border-radius:30px; text-align:center;height:30px;" placeholder="User's Name" name="dept" id="teacher_uname">
-<br><br><br>
-	
-		<input type="password" style="border-radius:30px; text-align:center;height:30px;" placeholder="Password" name="dept" id="teacher_pass">
-<br><br><br>
-		 <select id="dept_d_teach" style="border-radius:30px;height:30px; text-align:center">
-    <option selected="true"  value="me" disabled="disabled" hidden>Choose a Department</option>
-  </select>
-<br><br><br>
-  
+        <br><br><br>
+	    <input type="password" style="border-radius:30px; text-align:center;height:30px;" placeholder="Password" name="dept" id="teacher_pass">
+        <br><br><br>
+	    	<select id="dept_d_teach" style="border-radius:30px;height:30px; text-align:center">
+              <option selected="true"  value="me" disabled="disabled" hidden>Choose a Department</option>
+        </select>
+        <br><br><br>
 		<input type="text" style="border-radius:30px;height:30px; text-align:center"  placeholder="Designation" name="dept" id="teacher_design">
-	<br><br><br>
-		<input type="submit" onclick="addteacher()" style="border-radius:30px;height:30px; text-align:center" value="Add Teacher" />
+	    <br><br><br>
+		<input type="submit" onclick="addteacher()" id="aTeacher" style="border-radius:30px;height:30px; text-align:center" value="Add Teacher" />
 	</center>
 </form>
 
 
 
+<!--Form To Allocate Teacher -->
 	<form id="allocateTeacher" action="javascript:allocateTeacher()" style="display:none">
-<center>
+      <center>
 
 	<br>
   <select id="teacher_drop" style="border-radius:30px; text-align:center;height:30px;"  onchange="teacherChange()">
@@ -128,13 +115,14 @@
   </select>
 
 <br><br><br>
-  <input type="submit" onclick="allocate()" style="border-radius:30px;height:30px; text-align:center" value="Allocate Teacher" />
+  <input type="submit" onclick="allocate()"  id="aallocate"style="border-radius:30px;height:30px; text-align:center" value="Allocate Teacher" />
 </center>
 </form>
 
 
 
 
+<!--Form To Assign HOD -->
 
 <form id="assignHOD" action="javascript:assignHOD()" style="display:none">
 
@@ -153,10 +141,12 @@
 		<input type="password" style="border-radius:30px;height:30px; text-align:center" placeholder="password" name="dept" id="hod_pass">
 	
 <br><br><br>
-<input type="submit" onclick="allocate1()" style="border-radius:30px;height:30px; text-align:center" value="Assign HOD"/> 
+<input type="submit" onclick="allocate1()" id="aallocate1"style="border-radius:30px;height:30px; text-align:center" value="Assign HOD"/> 
 </form>
 
 
+
+<!--Form To show by Department -->
 <form id="showByDept" action="javascript:showbyDept()" style="display:none">
 
 	<br>
@@ -170,6 +160,7 @@
 </form>
 
 
+<!--Form To Add subject -->
 <div id="showBySubject" action="javascript:showbySub()" style="display:none">
 
 	<br>
@@ -182,5 +173,8 @@
 <br><br>
 <span class="mystyle" id="showsub" style="color:white";></span>
 </div>
+<br><br><br><br>
+
+	
 	</body>
 </html>

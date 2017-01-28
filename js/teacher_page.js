@@ -1,3 +1,19 @@
+function pop(a, b){
+
+  var popup = document.getElementById('myPopup');
+    popup.classList.toggle('show');
+
+   document.getElementById(a).disabled=true;
+   popup.innerHTML=b;
+   var millisecondsToWait = 3000;
+   setTimeout(function() 
+   {
+      popup.classList.toggle('show');
+      document.getElementById(a).disabled=false;
+   }, millisecondsToWait);
+
+}
+
 function updateFields(){
   var sitePersonel = [];
   var allotment = []
@@ -218,7 +234,8 @@ var phno = document.getElementById("phoneno").value;
  var phoneno = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/;
   if(!phoneno.test(phno) || phoneno.length<10) {
   
-    confirm("You have entered Incorrect Phone Number");
+   
+pop("personal","You Have entered incorrect phone no.");
     document.getElementById("phoneno").disabled=false;
     document.getElementById("age").disabled=false;
     document.getElementById("gmale").disabled=false;
@@ -231,7 +248,7 @@ var phno = document.getElementById("phoneno").value;
 
  if(document.getElementById("age").value.length>3  )
     {
-      alert("Please enter valid age");
+    pop("personal","Please enter valid age");
       document.getElementById("phoneno").disabled=false;
       document.getElementById("age").disabled=false;
       document.getElementById("gmale").disabled=false;
@@ -254,7 +271,7 @@ sitePersonel[i].teacher_age= document.getElementById("age").value;
 
 sitePersonel[i].teacher_gender= gender; 
     localStorage.setItem("teacher_profile", JSON.stringify(sitePersonel));
-        confirm("Successfully Updated");
+        pop("personal","Successfully Added");
 break;
 }
 
@@ -271,7 +288,7 @@ var phno = document.getElementById("phoneno").value;
  var phoneno = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/;
   if(!phoneno.test(phno) || phoneno.length<10) {
   
-  confirm("You have entered Incorrect Phone Number");
+ pop("personal","You Have entered incorrect phone no.");
   document.getElementById("phoneno").disabled=false;
   document.getElementById("age").disabled=false;
   document.getElementById("gmale").disabled=false;
@@ -284,7 +301,7 @@ var phno = document.getElementById("phoneno").value;
 
  if(document.getElementById("age").value.trim().length>4  )
     {
-   alert("Please enter valid age");
+pop("personal","Please enter valid age");
    document.getElementById("phoneno").disabled=false;
    document.getElementById("age").disabled=false;
    document.getElementById("gmale").disabled=false;
@@ -318,7 +335,7 @@ var phno = document.getElementById("phoneno").value;
     }
     sitePersonel.push(combination);
     localStorage.setItem("teacher_profile", JSON.stringify(sitePersonel));
-    confirm("Successfully Added");
+    pop("personal","Successfully Added");
     updateFields();
 }
 
@@ -365,7 +382,7 @@ var phno = document.getElementById("phoneno").value;
          var phno = document.getElementById("school").value;
          if(document.getElementById("school").value.length<3 )
           {
-           confirm("Please enter valid School name");
+    pop("qual","Please enter valid school name");
            document.getElementById("school").disabled=false;
            document.getElementById("hschool").disabled=false;
            document.getElementById("dcol").disabled=false;
@@ -378,7 +395,8 @@ var phno = document.getElementById("phoneno").value;
   
           if(document.getElementById("hschool").value.length<3 )
           {
-          confirm("Please enter valid higher school");
+     
+    pop("qual","Please enter valid high school name");
           document.getElementById("school").disabled=false;
           document.getElementById("hschool").disabled=false;
           document.getElementById("dcol").disabled=false;
@@ -390,7 +408,8 @@ var phno = document.getElementById("phoneno").value;
 
           if(document.getElementById("dcol").value.length<3  )
           {
-          confirm("Please enter valid degree College");
+      
+    pop("qual","Please enter valid degree college name");
           document.getElementById("school").disabled=false;
           document.getElementById("hschool").disabled=false;
           document.getElementById("dcol").disabled=false;
@@ -402,7 +421,8 @@ var phno = document.getElementById("phoneno").value;
 
       if(document.getElementById("hcol").value.length<3  )
         {
-        confirm("Please enter valid higher degree College");
+       
+    pop("qual","Please enter valid higher degree name");
         document.getElementById("school").disabled=false; 
         document.getElementById("hschool").disabled=false;
         document.getElementById("dcol").disabled=false;
@@ -417,7 +437,8 @@ sitePersonel[i].teacher_hschool= document.getElementById("hschool").value;
 sitePersonel[i].teacher_dcol= document.getElementById("dcol").value;
 sitePersonel[i].teacher_hcol= document.getElementById("hcol").value; 
 localStorage.setItem("teacher_profile", JSON.stringify(sitePersonel));
-confirm("Successfully Updated");
+
+    pop("qual","Successfully added");
 updateFields();
 break;
 }
@@ -431,7 +452,8 @@ var phno = document.getElementById("school").value;
 
  if(document.getElementById("school").value.trim().length<3 )
     {
-   confirm("Please enter valid School name");
+   
+    pop("qual","Please enter valid school name");
    document.getElementById("school").disabled=false;
    document.getElementById("hschool").disabled=false;
    document.getElementById("dcol").disabled=false;
@@ -439,14 +461,13 @@ var phno = document.getElementById("school").value;
    document.getElementById("qual").hidden=false;
    document.getElementById("equal").hidden=true;
         return false;
-
-
     }
 
 
  if(document.getElementById("hschool").value.trim().length<3  )
     {
-   confirm("Please enter valid higher school");          
+
+    pop("qual","Please enter valid high school name");        
    document.getElementById("school").disabled=false;
    document.getElementById("hschool").disabled=false;
    document.getElementById("dcol").disabled=false;
@@ -454,13 +475,11 @@ var phno = document.getElementById("school").value;
    document.getElementById("qual").hidden=false;
    document.getElementById("equal").hidden=true;
         return false;
-
-
     }
 
      if(document.getElementById("dcol").value.trim().length<3  )
     {
-     confirm("Please enter valid degree College");
+    pop("qual","Please enter valid degree college name");
      document.getElementById("school").disabled=false;
      document.getElementById("hschool").disabled=false;
      document.getElementById("dcol").disabled=false;
@@ -468,13 +487,11 @@ var phno = document.getElementById("school").value;
      document.getElementById("qual").hidden=false;
      document.getElementById("equal").hidden=true;
         return false;
-
-
     }
 
       if(document.getElementById("hcol").value.trim().length<3  )
-    {
-     confirm("Please enter valid higher degree College");       
+    { 
+     pop("qual","Please enter valid higher degree college name");       
      document.getElementById("school").disabled=false;
      document.getElementById("hschool").disabled=false;
      document.getElementById("dcol").disabled=false;
@@ -483,8 +500,6 @@ var phno = document.getElementById("school").value;
      document.getElementById("equal").hidden=true;
      return false;
     }
-
-
       var combination = {
       "teacher": localStorage.getItem("id2"),
       "teacher_phone": "N/A",
@@ -496,12 +511,9 @@ var phno = document.getElementById("school").value;
       "teacher_hcol": document.getElementById("hcol").value 
     }
     sitePersonel.push(combination);
-
-
     localStorage.setItem("teacher_profile", JSON.stringify(sitePersonel));
-
-updateFields();
-    confirm("Successfully Added");
+    updateFields();
+    pop("personal","Successfully added");
 }
 
      }
