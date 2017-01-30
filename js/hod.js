@@ -7,7 +7,7 @@
        
 
    $(function() {
-  
+  remember();
 
      $("#hod_id").click(function(){
     addStudents();
@@ -61,7 +61,7 @@ function pop(a, b){
      window.location.href = "student.html";
      return false;
     }
-  document.getElementById("name").innerHTML = "Welcome &nbsp;"+localStorage.getItem("id1")+"&nbsp;HOD <br><br><center><font size='3' >"+localStorage.getItem("idname")+"</font></center>" ;
+ $("#name").html("Welcome &nbsp;"+localStorage.getItem("id1")+"&nbsp;HOD <br><br><center><font size='3' >"+localStorage.getItem("idname")+"</font></center>" );
 
   if(localStorage.getItem("id1")==null)
     {
@@ -112,9 +112,9 @@ function pop(a, b){
      {
     sitePersonel = [];
      }
-     y= document.getElementById("pass").value;
-     x=document.getElementById("uname").value;
-    za=document.getElementById("username").value;
+     y= $("#pass").val();
+     x=$("#uname").val();
+    za=$("#username").val();
     if(!(y.toLowerCase().trim().length< 3) || !(x.toLowerCase().trim().length< 3) || !(y.toLowerCase().trim().length< 3))
       {
         flag=0;
@@ -137,7 +137,7 @@ x="s_"+x;
 
       "student_uname": x,
       "student_pass": y,
-      "student_name": document.getElementById("username").value,
+      "student_name": $("#username").val(),
       "student_department": localStorage.getItem("id1")
       
     }

@@ -65,20 +65,28 @@ function updateFields(){
     var w = "Student Name:"+localStorage.getItem("idname") +" Username:"+localStorage.getItem("id1") ;
     if(sitePersonel[i].student ==w)
     {
-     document.getElementById("phoneno").value=sitePersonel[i].student_phone;
-     if(sitePersonel[i].student_gender=="M")
+   
+   $("#phoneno").attr("value",sitePersonel[i].teacher_phone);
+
+     if(sitePersonel[i].teacher_gender=="M")
        {
-         document.getElementById("gmale").checked=true;
+
+         
+         $('#gmail').prop('checked', true);
        }
-     else
-     {
-       document.getElementById("gfmale").checked=true;
-     }
-  document.getElementById("age").value=sitePersonel[i].student_age;
-  document.getElementById("school").value=sitePersonel[i].student_school;
-  document.getElementById("hschool").value=sitePersonel[i].student_hschool;
-  document.getElementById("dcol").value=sitePersonel[i].student_dcol;
-  document.getElementById("hcol").value=sitePersonel[i].student_hcol;
+      else
+         {
+
+         $('#gfmail').prop('checked', true);
+          
+
+        }
+  $("#age").attr("value",sitePersonel[i].teacher_age);
+      $("#school").attr("value",sitePersonel[i].teacher_school);
+
+       $("#hschool").attr("value",sitePersonel[i].teacher_hschool);
+       $("#dcol").attr("value",sitePersonel[i].teacher_dcol);
+       $("#hcol").attr("value",sitePersonel[i].teacher_hcol);
     }
 
    }
@@ -87,16 +95,16 @@ function updateFields(){
 function rememberlast()
  {
     updateFields();
-    document.getElementById("phoneno").disabled=true;
-    document.getElementById("age").disabled=true;
-    document.getElementById("gmale").disabled=true;
-    document.getElementById("gfmale").disabled=true;
-    document.getElementById("personal").hidden=true;
-    document.getElementById("school").disabled=true;
-    document.getElementById("hschool").disabled=true;
-    document.getElementById("dcol").disabled=true;
-    document.getElementById("hcol").disabled=true;
-    document.getElementById("qual").hidden=true;
+    $("#phoneno").attr("disabled","disabled");
+     $("#age").attr("disabled","disabled");
+     $("#gmale").attr("disabled","disabled");
+     $("#gfmale").attr("disabled","disabled");
+     $("#personal").attr("hidden","hidden");
+     $("#school").attr("disabled","disabled");
+     $("#hschool").attr("disabled","disabled");
+     $("#dcol").attr("disabled","disabled");
+     $("#hcol").attr("disabled","disabled");
+     $("#qual").attr("hidden","hidden");
     if(localStorage.getItem("status")=="out") 
       {
        window.location.href = "Login.html";
@@ -117,8 +125,9 @@ function rememberlast()
         window.location.href = "hod.html";
         return false;
       }
-    document.getElementById("uid1").innerHTML="Welcome &nbsp;"+ localStorage.getItem("idname");
-    document.getElementById("department").innerHTML="Department&nbsp;:&nbsp;"+  localStorage.getItem("id2");
+    
+   $("#uid1").html("Welcome &nbsp;"+ localStorage.getItem("idname"));
+    $("#department").html("Department&nbsp;:&nbsp;"+  localStorage.getItem("id2"));
 
    if(localStorage.getItem("idname")==null)
      {
@@ -133,21 +142,21 @@ function rememberlast()
    }
 function setProfile()
    {       
-     document.getElementById("phoneno").disabled=false;
-     document.getElementById("age").disabled=false;
-     document.getElementById("gmale").disabled=false;
-     document.getElementById("gfmale").disabled=false;
-     document.getElementById("personal").hidden=false;
-     document.getElementById("pqual").hidden=true;
+       $("#phoneno").removeAttr("disabled");
+   $("#age").removeAttr("disabled");
+   $("#gmale").removeAttr("disabled");
+   $("#gfmale").removeAttr("disabled");
+   $("#personal").removeAttr("hidden");
+   $("#pqual").attr("hidden","hidden");
      }
 function saveProfile()
   {       
-   document.getElementById("phoneno").disabled=true;
-   document.getElementById("age").disabled=true;
-   document.getElementById("gmale").disabled=true;
-   document.getElementById("gfmale").disabled=true;
-   document.getElementById("personal").hidden=true;
-   document.getElementById("pqual").hidden=false;
+   $("#phoneno").attr("disabled","disabled");
+    $("#age").attr("disabled","disabled");
+    $("#gmale").attr("disabled","disabled");
+    $("#gfmale").attr("disabled","disabled");
+    $("#personal").attr("hidden","hidden");
+    $("#pqual").removeAttr("hidden");
    var sitePersonel = [];
    var allotment = []
    var flag=0;
@@ -164,28 +173,28 @@ function saveProfile()
        if(sitePersonel[i].student ==w )
         {
          flag=1;
-         var phno = document.getElementById("phoneno").value;
+         var phno = $("#phoneno").val();
          var phoneno = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/;
          if(!phoneno.test(phno) || phoneno.length<10) {
               pop("personal","Please enter valid number");
-              document.getElementById("phoneno").disabled=false;
-      document.getElementById("age").disabled=false;
-      document.getElementById("gmale").disabled=false;
-      document.getElementById("gfmale").disabled=false;
-      document.getElementById("personal").hidden=false;
-      document.getElementById("pqual").hidden=true;
+              $("#phoneno").removeAttr("disabled");
+    $("#age").removeAttr("disabled");
+    $("#gmale").removeAttr("disabled");
+    $("#gfmale").removeAttr("disabled");
+    $("#personal").removeAttr("hidden");
+    $("#pqual").attr("hidden","hidden");
       return false;
   }
 
  if(document.getElementById("age").value.length>3  )
     {
      pop("personal","Please enter valid age");
-     document.getElementById("phoneno").disabled=false;
-     document.getElementById("age").disabled=false;
-     document.getElementById("gmale").disabled=false;
-     document.getElementById("gfmale").disabled=false;
-     document.getElementById("personal").hidden=false;
-     document.getElementById("pqual").hidden=true;
+   $("#phoneno").removeAttr("disabled");
+    $("#age").removeAttr("disabled");
+    $("#gmale").removeAttr("disabled");
+    $("#gfmale").removeAttr("disabled");
+    $("#personal").removeAttr("hidden");
+    $("#pqual").attr("hidden","hidden");
     return false;
     }
     var gender="";
@@ -198,7 +207,7 @@ function saveProfile()
       gender="F";
     }
     sitePersonel[i].student_phone= phno; 
-    sitePersonel[i].student_age= document.getElementById("age").value; 
+    sitePersonel[i].student_age= $("#age").val(); 
     sitePersonel[i].student_gender= gender; 
     localStorage.setItem("student_profile", JSON.stringify(sitePersonel));
             
@@ -219,12 +228,12 @@ var phno = document.getElementById("phoneno").value;
  var phoneno = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/;
   if(!phoneno.test(phno) || phoneno.length<10) {
   pop("personal","Please enter valid number");
-  document.getElementById("phoneno").disabled=false;
-  document.getElementById("age").disabled=false;
-  document.getElementById("gmale").disabled=false;
-  document.getElementById("gfmale").disabled=false;
-  document.getElementById("personal").hidden=false;
-  document.getElementById("pqual").hidden=true;
+   $("#phoneno").removeAttr("disabled");
+    $("#age").removeAttr("disabled");
+    $("#gmale").removeAttr("disabled");
+    $("#gfmale").removeAttr("disabled");
+    $("#personal").removeAttr("hidden");
+    $("#pqual").attr("hidden","hidden");
   return false;
   }
 
@@ -232,12 +241,12 @@ var phno = document.getElementById("phoneno").value;
  if(document.getElementById("age").value.length>4  )
     {
      pop("personal","Please enter valid age");
-     document.getElementById("phoneno").disabled=false;
-     document.getElementById("age").disabled=false;
-     document.getElementById("gmale").disabled=false;
-     document.getElementById("gfmale").disabled=false;
-     document.getElementById("personal").hidden=false;
-     document.getElementById("pqual").hidden=true;
+     $("#phoneno").removeAttr("disabled");
+    $("#age").removeAttr("disabled");
+    $("#gmale").removeAttr("disabled");
+    $("#gfmale").removeAttr("disabled");
+    $("#personal").removeAttr("hidden");
+    $("#pqual").attr("hidden","hidden");
      return false;
     }
 var gender="";
@@ -253,7 +262,7 @@ var gender="";
       var combination = {
       "student": "Student Name:"+localStorage.getItem("idname") +" Username:"+localStorage.getItem("id1"),
       "student_phone": phno,
-      "student_age": document.getElementById("age").value,
+      "student_age": $("#age").val(),
       "student_gender": gender,
       "student_school":"N/A",
       "student_hschool":"N/A"   ,
@@ -269,21 +278,22 @@ var gender="";
 
 function setQualification()
  {
-   document.getElementById("school").disabled=false;
-   document.getElementById("hschool").disabled=false;
-   document.getElementById("dcol").disabled=false;
-   document.getElementById("hcol").disabled=false;
-   document.getElementById("qual").hidden=false;
-   document.getElementById("equal").hidden=true;
+    $("#school").removeAttr("disabled");
+    $("#hschool").removeAttr("disabled");
+    $("#dcol").removeAttr("disabled");
+    $("#hcol").removeAttr("disabled");
+    $("#qual").removeAttr("hidden");
+    $("#equal").attr("hidden","hidden");
      }
 
  function saveQual(){
-    document.getElementById("school").disabled=true;  
-    document.getElementById("hschool").disabled=true;
-    document.getElementById("dcol").disabled=true;
-    document.getElementById("hcol").disabled=true;
-    document.getElementById("qual").hidden=true;
-    document.getElementById("equal").hidden=false; 
+ $("#school").attr("disabled","disabled");
+   $("#hschool").attr("disabled","disabled");
+   $("#dcol").attr("disabled","disabled");
+   $("#hcol").attr("disabled","disabled");
+   $("#qual").attr("hidden","hidden");
+   $("#equal").removeAttr("hidden");
+
     var sitePersonel = [];
     var allotment = []
     var flag=0;
@@ -299,58 +309,58 @@ function setQualification()
       if(sitePersonel[i].student ==w )
         {
          flag=1;
-         var phno = document.getElementById("school").value;
-         if(document.getElementById("school").value.length<3  )
+         var phno = $("#school").val();
+         if($("school").val().length<3  )
             {
                pop("qual","Please enter valid school");
-               document.getElementById("school").disabled=false;
-               document.getElementById("hschool").disabled=false;
-               document.getElementById("dcol").disabled=false;
-               document.getElementById("hcol").disabled=false;
-               document.getElementById("qual").hidden=false;
-               document.getElementById("equal").hidden=true;
+                $("#school").removeAttr("disabled");
+    $("#hschool").removeAttr("disabled");
+    $("#dcol").removeAttr("disabled");
+    $("#hcol").removeAttr("disabled");
+    $("#qual").removeAttr("hidden");
+    $("#equal").attr("hidden","hidden");
                return false;
     }
 
- if(document.getElementById("hschool").value.length<3 )
+ if($("#hschool").val().length<3 )
      {
        pop("qual","Please enter valid high school");  
-       document.getElementById("school").disabled=false;
-       document.getElementById("hschool").disabled=false;
-       document.getElementById("dcol").disabled=false;
-       document.getElementById("hcol").disabled=false;
-       document.getElementById("qual").hidden=false;
-       document.getElementById("equal").hidden=true; 
+        $("#school").removeAttr("disabled");
+    $("#hschool").removeAttr("disabled");
+    $("#dcol").removeAttr("disabled");
+    $("#hcol").removeAttr("disabled");
+    $("#qual").removeAttr("hidden");
+    $("#equal").attr("hidden","hidden");
        return false;
     }
 
-     if(document.getElementById("dcol").value.length<3  )
+     if($("#dcol").val().length<3  )
       {
        pop("qual","Please enter valid degree college");
-       document.getElementById("school").disabled=false;
-       document.getElementById("hschool").disabled=false;
-       document.getElementById("dcol").disabled=false;
-       document.getElementById("hcol").disabled=false;
-       document.getElementById("qual").hidden=false;
-       document.getElementById("equal").hidden=true;
+        $("#school").removeAttr("disabled");
+    $("#hschool").removeAttr("disabled");
+    $("#dcol").removeAttr("disabled");
+    $("#hcol").removeAttr("disabled");
+    $("#qual").removeAttr("hidden");
+    $("#equal").attr("hidden","hidden");
        return false;
     }
-    if(document.getElementById("hcol").value.length<3  )
+    if($("#hcol").value.length<3  )
        {
          pop("personal","Please enter valid higher college");
-        document.getElementById("school").disabled=false;
-        document.getElementById("hschool").disabled=false;
-        document.getElementById("dcol").disabled=false;
-        document.getElementById("hcol").disabled=false;
-        document.getElementById("qual").hidden=false;
-        document.getElementById("equal").hidden=true;
+         $("#school").removeAttr("disabled");
+    $("#hschool").removeAttr("disabled");
+    $("#dcol").removeAttr("disabled");
+    $("#hcol").removeAttr("disabled");
+    $("#qual").removeAttr("hidden");
+    $("#equal").attr("hidden","hidden");
         return false;
     }
 
-   sitePersonel[i].student_school= document.getElementById("school").value; 
-   sitePersonel[i].student_hschool= document.getElementById("hschool").value; 
-   sitePersonel[i].student_dcol= document.getElementById("dcol").value;
-   sitePersonel[i].student_hcol= document.getElementById("hcol").value; 
+   sitePersonel[i].student_school= $("#school").val(); 
+   sitePersonel[i].student_hschool= $("#hschool").val(); 
+   sitePersonel[i].student_dcol= $("#dcol").val();
+   sitePersonel[i].student_hcol= $("#hcol").val(); 
    localStorage.setItem("student_profile", JSON.stringify(sitePersonel));
    pop("qual","Successfully added");
    updateFields();
@@ -361,53 +371,53 @@ function setQualification()
 
   if(flag==0){
   console.log("Hello I am Ankit");
-  var phno = document.getElementById("school").value;
-  if(document.getElementById("school").value.length<3  )
+  var phno = $("#school").val();
+  if($("#school").value.length<3  )
     {
     pop("qual","Please enter valid  school");  
-    document.getElementById("school").disabled=false;
-    document.getElementById("hschool").disabled=false;
-    document.getElementById("dcol").disabled=false;
-    document.getElementById("hcol").disabled=false;
-    document.getElementById("qual").hidden=false;
-    document.getElementById("equal").hidden=true;
+     $("#school").removeAttr("disabled");
+    $("#hschool").removeAttr("disabled");
+    $("#dcol").removeAttr("disabled");
+    $("#hcol").removeAttr("disabled");
+    $("#qual").removeAttr("hidden");
+    $("#equal").attr("hidden","hidden");
     return false;
     }
-  if(document.getElementById("hschool").value.length<3 )
+  if($("#hschool").val().length<3 )
     {
      pop("qual","Please enter valid high school");   
-     document.getElementById("school").disabled=false;
-     document.getElementById("hschool").disabled=false;
-     document.getElementById("dcol").disabled=false;
-     document.getElementById("hcol").disabled=false;
-     document.getElementById("qual").hidden=false;
-     document.getElementById("equal").hidden=true;
+     $("#school").removeAttr("disabled");
+    $("#hschool").removeAttr("disabled");
+    $("#dcol").removeAttr("disabled");
+    $("#hcol").removeAttr("disabled");
+    $("#qual").removeAttr("hidden");
+    $("#equal").attr("hidden","hidden");
      return false;
 
 
     }
 
-     if(document.getElementById("dcol").value.length<3  )
+     if($("#dcol").val().length<3  )
     {
      pop("qual","Please enter valid degree school"); 
-     document.getElementById("school").disabled=false;
-     document.getElementById("hschool").disabled=false;
-     document.getElementById("dcol").disabled=false;
-     document.getElementById("hcol").disabled=false;
-     document.getElementById("qual").hidden=false;
-     document.getElementById("equal").hidden=true;
+     $("#school").removeAttr("disabled");
+    $("#hschool").removeAttr("disabled");
+    $("#dcol").removeAttr("disabled");
+    $("#hcol").removeAttr("disabled");
+    $("#qual").removeAttr("hidden");
+    $("#equal").attr("hidden","hidden");
      return false;
     }
 
-    if(document.getElementById("hcol").value.length<3  )
+    if($("#hcol").val().length<3  )
     {
      pop("qual","Please enter valid high degree college");     
-     document.getElementById("school").disabled=false;
-     document.getElementById("hschool").disabled=false;
-     document.getElementById("dcol").disabled=false;
-     document.getElementById("hcol").disabled=false;
-     document.getElementById("qual").hidden=false;
-     document.getElementById("equal").hidden=true;
+     $("#school").removeAttr("disabled");
+    $("#hschool").removeAttr("disabled");
+    $("#dcol").removeAttr("disabled");
+    $("#hcol").removeAttr("disabled");
+    $("#qual").removeAttr("hidden");
+    $("#equal").attr("hidden","hidden");
      return false;
     }
       var combination = {
@@ -415,10 +425,10 @@ function setQualification()
       "student_phone": "N/A",
       "student_age": "N/A",
       "student_gender": "N/A",
-      "student_school":document.getElementById("school").value,
-      "student_hschool":document.getElementById("hschool").value   ,
-      "student_dcol":document.getElementById("dcol").value ,
-      "student_hcol": document.getElementById("hcol").value 
+      "student_school":$("#school").val(),
+      "student_hschool":$("#hschool").val()   ,
+      "student_dcol":$("#dcol").val() ,
+      "student_hcol": $("#hcol").val() 
     }
     sitePersonel.push(combination);
 

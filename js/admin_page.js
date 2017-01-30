@@ -1,6 +1,6 @@
 var departments=[];
 var combination={};
-var OUT='out'
+
 
 (function($, window, document) {
        
@@ -21,7 +21,7 @@ var OUT='out'
     showDept();
      });
 
-       $("#subSubj").click(function(){
+       $("#SubSubject").click(function(){
     showBySubject();
      });
 
@@ -96,76 +96,56 @@ function pop(a, b){
     }, millisecondsToWait);
 }
 
+function invisible_all(){
+
+$("#addDept").css("display","none");
+  $("#addSubject").css("display","none");
+  $("#addTeacher").css("display","none");
+  $("#allocateTeacher").css("display","none");
+  $("#assignHOD").css("display","none");
+  $("#showByDept").css("display","none");
+  $("#showBySubject").css("display","none");
+
+
+}
 function addDeptVisible()
 {
-  document.getElementById("addDept").style.display= "block";
-  document.getElementById("addSubject").style.display= "none";
-  document.getElementById("addTeacher").style.display= "none";
-  document.getElementById("allocateTeacher").style.display= "none";
-  document.getElementById("assignHOD").style.display= "none";
-  document.getElementById("showByDept").style.display= "none";
-  document.getElementById("showBySubject").style.display= "none";
+
+invisible_all();
+  $("#addDept").css("display","block");
+  
 }
 
 function addSubjectVisible(){
-
-  document.getElementById("addDept").style.display= "none";
-  document.getElementById("addSubject").style.display= "block";
-  document.getElementById("addTeacher").style.display= "none";
-  document.getElementById("allocateTeacher").style.display= "none";
-  document.getElementById("assignHOD").style.display= "none";
-  document.getElementById("showByDept").style.display= "none";
-  document.getElementById("showBySubject").style.display= "none";
+  invisible_all();
+ $("#addSubject").css("display","block");
+  
 }
 
 function addTeacherVisible(){
-  document.getElementById("addDept").style.display= "none";
-  document.getElementById("addSubject").style.display= "none";
-  document.getElementById("addTeacher").style.display= "block";
-  document.getElementById("allocateTeacher").style.display= "none";
-  document.getElementById("assignHOD").style.display= "none";
-  document.getElementById("showByDept").style.display= "none";
-  document.getElementById("showBySubject").style.display= "none";
+  invisible_all();
+  $("#addTeacher").css("display","block");
+  
 }
 
 function assignHOD(){
-
-  document.getElementById("addDept").style.display= "none";
-  document.getElementById("addSubject").style.display= "none";
-  document.getElementById("addTeacher").style.display= "none";
-  document.getElementById("allocateTeacher").style.display= "none";
-  document.getElementById("assignHOD").style.display= "block";
-  document.getElementById("showByDept").style.display= "none";
-  document.getElementById("showBySubject").style.display= "none";
+  invisible_all();
+  $("#assignHOD").css("display","block");
 }
 
 function showbyDept(){
-  document.getElementById("addDept").style.display= "none";
-  document.getElementById("addSubject").style.display= "none";
-  document.getElementById("addTeacher").style.display= "none";
-  document.getElementById("allocateTeacher").style.display= "none";
-  document.getElementById("assignHOD").style.display= "none";
-  document.getElementById("showByDept").style.display= "block";
-  document.getElementById("showBySubject").style.display= "none";
+  invisible_all();
+  $("#showByDept").css("display","block");
+ 
 }
 
 function showbySub(){
-  document.getElementById("addDept").style.display= "none";
-  document.getElementById("addSubject").style.display= "none";
-  document.getElementById("addTeacher").style.display= "none";
-  document.getElementById("allocateTeacher").style.display= "none";
-  document.getElementById("assignHOD").style.display= "none";
-  document.getElementById("showByDept").style.display= "none";
-  document.getElementById("showBySubject").style.display= "block";
+  invisible_all();
+  $("#showBySubject").css("display","block");
 }
 function allocateTeacher(){
-  document.getElementById("addDept").style.display= "none";
-  document.getElementById("addSubject").style.display= "none";
-  document.getElementById("addTeacher").style.display= "none";
-  document.getElementById("allocateTeacher").style.display= "block";
-  document.getElementById("assignHOD").style.display= "none";
-  document.getElementById("showByDept").style.display= "none";
-  document.getElementById("showBySubject").style.display= "none";
+  invisible_all();
+  $("#allocateTeacher").css("display","block");
 }
 
 function add_toDropdown(a,b){
@@ -230,13 +210,13 @@ if(localStorage.getItem("status")=="in")
 }
 function Invisible(){
 
-  document.getElementById("addDept").style.display= "block";
-  document.getElementById("addSubject").style.display= "none";
-  document.getElementById("addTeacher").style.display= "none";
-  document.getElementById("allocateTeacher").style.display= "none";
-  document.getElementById("assignHOD").style.display= "none";
-  document.getElementById("showByDept").style.display= "none";
-  document.getElementById("showBySubject").style.display= "none";
+$("#addDept").css("display","block");
+  $("#addSubject").css("display","none");
+  $("#addTeacher").css("display","none");
+  $("#allocateTeacher").css("display","none");
+  $("#assignHOD").css("display","none");
+  $("#showByDept").css("display","none");
+  $("#showBySubject").css("display","none");
 }
 function restoreData(){
  departments = JSON.parse(localStorage.getItem("departments"));
@@ -278,14 +258,22 @@ document.getElementById("uid1").innerHTML="Welcome &nbsp;"+ localStorage.getItem
 restoreData();
 }
 function already_Exist(a,b,c){
+
+    flag=0;
    for(var i=0;i<a.length;i++)
        {
          if(a[i].toLowerCase().trim() == document.getElementById(b).value.toLowerCase().trim())
         {
     pop(c,"Already exists");
           flag=1;
-          return false;
+          return true;
         }
+
+       }
+
+       if(flag==1)return true;
+       else{
+        return false;
        }
 
 
@@ -304,13 +292,16 @@ function add(){
         dept_drop=[];
           
         }
-        already_Exist(departments,"dept","aDept");
-        departments.push(document.getElementById("dept").value);
+       if(! already_Exist(departments,"dept","aDept")){
+         departments.push(document.getElementById("dept").value);
         localStorage.setItem("departments", JSON.stringify(departments));
         pop("aDept","Successfully Added");
         addSingleValue_toDropdown("dept_d_teach",document.getElementById("dept").value);
         addSingleValue_toDropdown("selectNumber",document.getElementById("dept").value);
         addSingleValue_toDropdown("dept_d",document.getElementById("dept").value);
+
+       }
+        
        }
   else{
 
@@ -363,6 +354,18 @@ function subjectadd()
         {
     pop("aSubject","Subject already exists in the Department!");
           flag=1;return false ;
+        }
+        else if(sitePersonel[i].subject.toLowerCase().trim() == subject.toLowerCase().trim())
+        {
+
+var combination = {
+      "subject": subject,
+      "deptartment": teacher
+    }
+ pop("aSubject","Successfully added");
+     sitePersonel.push(combination);
+localStorage.setItem("Allocate", JSON.stringify(sitePersonel));
+return false;
         }
         }
     var combination = {
@@ -701,18 +704,18 @@ return false;
 }
 
 function teacherChange(){
-  tc("dept_drop","teacher_drop");
+ if( tc("dept_drop","teacher_drop")==false)return false;
     }
 
 
 function teaChange(){
-  tc("d_drop","t_drop");
+ if( tc("d_drop","t_drop")==false)return false;
  }
 function allocate1(){
         var sitePersonel = [];
         var allotment = []
-        y= document.getElementById("hod_pass").value;
-             if(!password_Check(y))return false;
+       
+        
         console.log(sitePersonel);
 
           sitePersonel = JSON.parse(localStorage.getItem("HODAllocation"));
@@ -736,6 +739,9 @@ function allocate1(){
            pop("aallocate1","Please select all fields");
            return false;
         } 
+ y= $("#hod_pass").val();{
+             if(!password_Check(y))return false;}
+
         var flag=0;
     for(var i=0;i<sitePersonel.length;i++)
     {

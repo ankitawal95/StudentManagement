@@ -50,11 +50,13 @@ function rememberlast()
 {
 
       
- document.getElementById('rem').checked = true;
+
+
+     $('#rem').prop('checked', true);
 
  if (typeof(Storage) !== "undefined") 
  {
-   document.getElementById("uid").value= localStorage.getItem("id1");
+  $("#uid").attr("value", localStorage.getItem("id1"));
    document.getElementById("pass").value = localStorage.getItem(MY_VALUES.STORED_PASSWORD);   
  } else 
 
