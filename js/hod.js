@@ -3,6 +3,28 @@
         localStorage.setItem("status", "out");
      }
 
+  (function($, window, document) {
+       
+
+   $(function() {
+  
+
+     $("#hod_id").click(function(){
+    addStudents();
+     });
+
+     $("#logout").click(function(){
+    checkStatus();
+     });
+
+
+
+   });
+    
+      remember();
+
+  }(window.jQuery, window, document));
+
 function pop(a, b){
   var popup = document.getElementById('myPopup');
   popup.classList.toggle('show');

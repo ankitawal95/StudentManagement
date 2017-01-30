@@ -1,0 +1,53 @@
+
+body{
+
+	background-image: linear-gradient(purple, orange);
+	background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size:cover;
+    position:relative;
+    
+}
+
+
+.input_style{
+
+  border-radius:30px;
+  height:30px;
+   text-align:center;
+   
+}
+
+.logout_style{
+    font-family: 'Raleway', sans-serif;
+	color:white;
+	margin-right:9px;
+	float:right;
+}
+
+.loading_style{
+
+
+	color:white;
+	font-family: 'Raleway', sans-serif;
+}
+
+.popup_style{
+	float:left; 
+	margin-left:50%;
+}
+
+.div1{
+
+	float:left; margin-left:4% ;margin-top:4%;
+}
+.div2{
+
+	float:left; position:absolute;left:38%;
+}
+
+.div3{
+
+float:right;margin-right:4%; margin-top:4%;
+	
+}

@@ -1,3 +1,40 @@
+
+ (function($, window, document) {
+       
+
+   $(function() {
+     rememberlast();
+    $("#equal").click(function(){
+    setQualification();
+     });
+
+    $("#qual").click(function(){
+   saveQual();
+     });
+
+    $("#personal").click(function(){
+    saveProfile();
+     });
+
+    $("#pqual").click(function(){
+    setProfile();
+     });
+
+    $("#logout").click(function(){
+    checkStatus();
+     });
+   });
+    
+   Session();
+
+  }(window.jQuery, window, document));
+
+
+
+
+
+
+
 function pop(a, b){
 
   var popup = document.getElementById('myPopup');
@@ -127,7 +164,7 @@ window.location.href = "Login.html";
     {
     InvisibleAll();
     updateFields();
-    Session();
+   
     document.getElementById("uid1").innerHTML="Welcome &nbsp;"+ localStorage.getItem("idname");
     var a = localStorage.getItem("id2");
     var sitePersonel = [];

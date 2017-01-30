@@ -1,0 +1,60 @@
+body{
+
+	background-image: linear-gradient(purple, orange);
+	background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size:cover;
+    position:relative;
+    top:20%;
+    right:0;
+    left:0;
+    
+}
+
+.common_style_input{
+
+ width:100%;
+ border-radius:30px;
+ text-align:center;
+ color:black;
+
+}
+
+.common_style_label{
+  font-family: 'Raleway', sans-serif;
+  color:white;
+}
+
+.submit_style{
+ font-family: 'Raleway', sans-serif;
+ font-weight:bold;
+ font-size:1.4em;
+ border-radius:30px;
+ background:white;
+ width:38%;
+ height:37px;
+}
+
+.popup_style{
+
+float:left; 
+margin-left:50%;
+
+}
+
+.heading_style{
+  font-family: 'Raleway', sans-serif;
+  color:white; 
+  margin-top:1%;
+}
+form { 
+
+ position:absolute;
+ top:18%;
+ right:0;
+ left:0;
+ margin-right:auto;
+ margin-left: auto;
+ width:250px;
+
+}

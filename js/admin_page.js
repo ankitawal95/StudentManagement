@@ -1,6 +1,83 @@
 var departments=[];
 var combination={};
 var OUT='out'
+
+(function($, window, document) {
+       
+
+   $(function() {
+
+     rememberlast();
+
+     $("#aallocate").click(function(){
+    allocate();
+     });
+
+      $("#aallocate1").click(function(){
+    allocate1();
+     });
+     
+      $("#subDept").click(function(){
+    showDept();
+     });
+
+       $("#subSubj").click(function(){
+    showBySubject();
+     });
+
+
+      $("#aTeacher").click(function(){
+    addteacher();
+     });
+
+
+     $("#aDept").click(function(){
+    add();
+     });
+
+     $("#aSubject").click(function(){
+    subjectadd()
+     });
+
+     $("#logout").click(function(){
+    checkStatus();
+     });
+
+
+    $("#tab1").click(function(){
+    addDeptVisible();
+     });
+
+    $("#tab2").click(function(){
+    addSubjectVisible();
+     });
+
+    $("#tab3").click(function(){
+    addTeacherVisible();
+     });
+
+    $("#tab4").click(function(){
+    allocateTeacher();
+     });
+
+    $("#tab5").click(function(){
+    assignHOD();
+     });
+
+    $("#tab6").click(function(){
+    showbyDept();
+     });
+
+    $("#tab7").click(function(){
+    showbySub();
+     });
+   });
+ 
+    
+     session();
+
+  }(window.jQuery, window, document));
+
 function checkStatus()
 {
   localStorage.setItem("status", "out");
@@ -193,7 +270,7 @@ if(departments == null)
 }
 
 function rememberlast() {
-session();
+
 Invisible();
 document.getElementById("subj_drop").disabled= true;
 document.getElementById("dept_drop").disabled= true;

@@ -1,17 +1,34 @@
 const MY_VALUES =
-{
+        {
 
-"STUDENT":"student.html",
-"ADMIN":"admin_page.html",
-"HOD":"hod.html",
-"TEACHER":"teacher_page.html",
-"SESSION":"status",
-"STORED_PASSWORD":"pass1",
-"LOGGEDIN":"in",
-"LOGGEDOUT":"out",
-"LOGGEDINHOD":"inHOD",
-"LOGGEDINSTUDENT":"inSTUD"
-}
+        "STUDENT":"student.html",
+        "ADMIN":"admin_page.html",
+        "HOD":"hod.html",
+        "TEACHER":"teacher_page.html",
+        "SESSION":"status",
+        "STORED_PASSWORD":"pass1",
+        "LOGGEDIN":"in",
+        "LOGGEDOUT":"out",
+        "LOGGEDINHOD":"inHOD",
+        "LOGGEDINSTUDENT":"inSTUD"
+        }  ; 
+  (function($, window, document,MY_VALUES) {
+       
+
+   $(function() {
+     rememberlast();
+     $("form").submit(function(){
+    return validate();
+
+
+   })
+   });
+    
+      SessionState();
+
+  }(window.jQuery, window, document,MY_VALUES));
+
+
 
 //function to display pop ups
 function pop(a, b){
@@ -26,14 +43,13 @@ setTimeout(function() {
     popup.classList.toggle('show');
 document.getElementById(a).disabled=false;
 }, millisecondsToWait);
-
 }
 
 // Remember the stored username and password
 function rememberlast()
 {
 
- SessionState();      
+      
  document.getElementById('rem').checked = true;
 
  if (typeof(Storage) !== "undefined") 

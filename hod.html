@@ -1,35 +1,37 @@
 <html>
 <head>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
       <script src="js/hod.js"></script>
   		<link rel="stylesheet" type="text/css" href="css/admin_page.css">
+      <link rel="stylesheet" type="text/css" href="css/admin_main.css">
 </head>
 <body  onload="remember()" background="img/admin.jpg"  style=" background-repeat: no-repeat;
     background-attachment: fixed;background-size:cover;
      ">
 
 
-  <a href="Login.html" onclick='return checkStatus()'><h2><span class="mystyle"  style="color:white; margin-right:9px;float:right;">&nbsp;Logout</span></h2></a>
+  <a href="Login.html"  id="logout" ><h2><span class="heading_style">&nbsp;Logout</span></h2></a>
   <br>
-  <center><h1 class="mystyle" id="name" style="color:white;">Welcome</h1></center>
+  <center><h1 class="loading_style" id="name" >Welcome</h1></center>
 
   <br><br><br><br>
-  <div class="popup" style="float:left; margin-left:36%;" onclick="myFunction()">
-    <span class="popuptext" style="margin-left:10px;" id="myPopup">A Simple Popup!</span>
+  <div class="popup" class="popup_style">
+    <span class="popuptext"  id="myPopup">A Simple Popup!</span>
   </div>
   <br><br>
   <center>
      <!-- Form to add students by HOD-->
   <form>
 
-		<input type="text"  style="border-radius:30px;height:30px; text-align:center;color:black"; placeholder="Name Student" name="username" id="username"  />
+		<input type="text"  class="input_style" placeholder="Name Student" name="username" id="username"  />
 
 		<br><br><br>
-		<input type="text" name="uname"   style="border-radius:30px;height:30px; text-align:center;color:black" placeholder="Username" id="uname"  />
+		<input type="text" name="uname"   class="input_style" placeholder="Username" id="uname"  />
     <br><br><br>
 
-		<input type="text"   style="border-radius:30px;height:30px; text-align:center;color:black" placeholder="Password" name="pass" id="pass"  />
+		<input type="text"   class="input_style" placeholder="Password" name="pass" id="pass"  />
     <br><br><br>
-		<input type="button"  id="hod_id" style="border-radius:30px;height:30px; text-align:center;font-weight:bold;font-size:1.01em;color:black" value="Add Student" onclick="return addStudents()"/>
+		<input type="button"  id="hod_id" class="submit_btn" value="Add Student" />
 </form>
 </center>
 </body>

@@ -1,3 +1,40 @@
+
+(function($, window, document) {
+       
+
+   $(function() {
+
+    rememberlast();
+    
+    $("#equal").click(function(){
+    setQualification();
+     });
+
+    $("#qual").click(function(){
+   saveQual();
+     });
+
+    $("#personal").click(function(){
+    saveProfile();
+     });
+
+    $("#pqual").click(function(){
+    setProfile();
+     });
+
+    $("#logout").click(function(){
+    checkStatus();
+     });
+   });
+    
+    
+
+  }(window.jQuery, window, document));
+
+
+
+
+
 function pop(a, b){
 
   var popup = document.getElementById('myPopup');
